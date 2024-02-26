@@ -1,0 +1,653 @@
+﻿@model Tiller.WXL.Models.ViewModels.ValuationReportViewModel
+
+@{
+    ViewBag.Title = "Valuation Report";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Test</title>
+    @if (Model.Mode == 2)
+    {
+        <link rel="stylesheet" href="~/css/bootstrap.min.css" crossorigin="anonymous">
+        <link rel="stylesheet" href="~/css/custom/valuation/valuation.css" crossorigin="anonymous">
+    }
+    else
+    {
+        <link rel="stylesheet" href="css/bootstrap.min.css" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/custom/valuation/valuation.css" crossorigin="anonymous">
+    }
+
+    @*<style>
+    @Html.Raw(Model.Css)
+    </style>*@
+</head>
+<body>
+    <div class="container body-content">
+        <div class="main-container">
+            <div class="section">
+                <h1 class="bookmark heading">Content</h1>
+                <hr />
+                <a href="#TOC_Target1" id="TOC_Title1" class="toc contents-page-style">Portfolio analysis of movements in period - @Model.PeriodStartDate?.ToString("dd/MM/yyyy") to @Model.EndDate?.ToString("dd/MM/yyyy")</a><br><br>
+                <a href="#TOC_Target2" id="TOC_Title2" class="toc contents-page-style">Portfolio analysis of movements since inception - @Model.ReportSummary.PortfolioInception.ToString("dd/MM/yyyy") to @Model.EndDate?.ToString("dd/MM/yyyy")</a><br><br>
+                <a href="#TOC_Target3" id="TOC_Title3" class="toc contents-page-style">Portfolio valuation</a><br><br>
+                <a href="#TOC_Target4" id="TOC_Title4" class="toc contents-page-style">Trades in period</a><br><br>
+                <a href="#TOC_Target5" id="TOC_Title5" class="toc contents-page-style">Fees in period</a><br><br>
+                <a href="#TOC_Target6" id="TOC_Title6" class="toc contents-page-style">Cash account statement</a><br><br>
+                <a href="#TOC_Target7" id="TOC_Title7" class="toc contents-page-style">Further information</a>
+            </div>
+
+            <div style="page-break-before:always">&nbsp;</div>
+
+            <div class="section">
+                <div class="header-info">
+                    <span>
+                        PORTFOLIO STATEMENT – @Model.ReportSummary.ProductCode @Model.ReportSummary.PortfolioReference – @Model.PeriodStartDate?.ToString("dd/MM/yyyy") to @Model.EndDate?.ToString("dd/MM/yyyy")
+                    </span>
+                    <span class="general-invest">
+                        @Model.ReportSummary.ProductTitle
+                    </span>
+                </div>
+                <h4 id="TOC_Target1" class="bookmark toc heading">Portfolio analysis of movements in period – @Model.PeriodStartDate?.ToString("dd/MM/yyyy") to @Model.EndDate?.ToString("dd/MM/yyyy")</h4>
+                <hr />
+                <div class="section-seven">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <h5>@Model.ReportSummary.ProductCode @Model.ReportSummary.PortfolioReference - @Model.ReportSummary.ProductTitle</h5>
+                            @{
+                                var fromspecifiedDate = Model.AnalysisOfMovements.Any() ? Model.AnalysisOfMovements.Where(x => x.ValuationRangeType != "Since Inception").FirstOrDefault() : new Tiller.WXL.Models.ValuationReportModels.AnalysisOfMovementsModel();
+                            }
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th>GBP</th>
+                                        <th>GBP</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="dashed-border">
+                                        <td colspan="2">Valuation of portfolio as of @Model.PeriodStartDate?.ToString("dd MMMM yyyy")</td>
+                                        <td></td>
+                                        <td>£@fromspecifiedDate.OpeningValuation.ToString("N2")</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">Movements:</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>New money paid in</td>
+                                        <td>£@fromspecifiedDate.CapitalIntroduced.ToString("N2")</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Money taken out</td>
+                                        <td>(£@((fromspecifiedDate.CapitalWithdrawn).ToString("N2")))</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Income received</td>
+                                        <td>£@fromspecifiedDate.IncomeReceived.ToString("N2")</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Fees and charges<sup>1</sup></td>
+                                        <td>(£@((fromspecifiedDate.FeesAndExpensesCharged).ToString("N2")))</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <hr />
+                                            £@((fromspecifiedDate.CapitalIntroduced + fromspecifiedDate.CapitalWithdrawn + fromspecifiedDate.IncomeReceived + fromspecifiedDate.FeesAndExpensesCharged).ToString("N2"))
+                                        </td>
+                                        <td></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="4">Changes in asset value:</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4"></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Realised profit/loss on sales</td>
+                                        <td>£@fromspecifiedDate.RealisedProfitOrLoss.ToString("N2")</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Investment performance</td>
+                                        <td>£@((fromspecifiedDate.MarketMovements).ToString("N2"))</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <hr />
+                                            £@((fromspecifiedDate.RealisedProfitOrLoss + fromspecifiedDate.MarketMovements).ToString("N2"))
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr class="dashed-border">
+                                        <td colspan="2">Closing value of portfolio as at @Model.AsAtDate.ToString("dd MMMM yyyy")</td>
+                                        <td></td>
+                                        <td>£@fromspecifiedDate.ClosingValue.ToString("N2")</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Performance@*<sup>2</sup>*@</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>@((fromspecifiedDate.ApproximatePerformance * 100).ToString("N2"))%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="footnote">
+                    <hr class="footnote-dash" />
+                    <p><sup>1</sup> Excludes fund level charges</p>
+                </div>
+            </div>
+
+            <div style="page-break-after:always">&nbsp;</div>
+
+            <div class="section section-start">
+                <div class="header-info">
+                    <span>
+                        PORTFOLIO STATEMENT – @Model.ReportSummary.ProductCode @Model.ReportSummary.PortfolioReference – @Model.PeriodStartDate?.ToString("dd/MM/yyyy") to @Model.EndDate?.ToString("dd/MM/yyyy")
+                    </span>
+                    <span class="general-invest">
+                        @Model.ReportSummary.ProductTitle
+                    </span>
+                </div>
+                <h4 id="TOC_Target2" class="bookmark toc heading">Portfolio analysis of movements since inception – @Model.ReportSummary.PortfolioInception.ToString("dd/MM/yyyy") to @Model.EndDate?.ToString("dd/MM/yyyy") </h4>
+                <hr />
+                <div class="section-eight">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            @{
+                                var sinceInception = Model.AnalysisOfMovements.Any() ? Model.AnalysisOfMovements.Where(x => x.ValuationRangeType == "Since Inception").FirstOrDefault() : new Tiller.WXL.Models.ValuationReportModels.AnalysisOfMovementsModel();
+                            }
+
+                            <h5>@Model.ReportSummary.ProductCode @Model.ReportSummary.PortfolioReference - @Model.ReportSummary.ProductTitle</h5>
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th>GBP</th>
+                                        <th>GBP</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="dashed-border">
+                                        <td colspan="2">Valuation of portfolio as of @Model.ReportSummary.PortfolioInception.ToString("dd MMMM yyyy")</td>s
+                                        <td></td>
+                                        <td>£@sinceInception.OpeningValuation.ToString("N2")</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">Movements:</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>New money paid in</td>
+                                        <td>£@sinceInception.CapitalIntroduced.ToString("N2")</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Money taken out</td>
+                                        <td>@string.Format("{0:£#,##0.00;(£#,##0.00);0.00}", sinceInception.CapitalWithdrawn)</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Income received</td>
+                                        <td>£@sinceInception.IncomeReceived.ToString("N2")</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Fees and charges<sup>2</sup></td>
+                                        <td>@string.Format("{0:£#,##0.00;(£#,##0.00);0.00}", sinceInception.FeesAndExpensesCharged)</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <hr />
+                                            £@((sinceInception.CapitalIntroduced + sinceInception.CapitalWithdrawn + sinceInception.IncomeReceived + sinceInception.FeesAndExpensesCharged).ToString("N2"))
+                                        </td>
+                                        <td></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="4">Changes in asset value:</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4"></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Realised profit/loss on sales</td>
+                                        <td>@string.Format("{0:£#,##0.00;(£#,##0.00);0.00}", sinceInception.RealisedProfitOrLoss)</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Investment performance</td>
+                                        <td>@string.Format("{0:£#,##0.00;(£#,##0.00);0.00}", sinceInception.MarketMovements)</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <hr />
+                                            @string.Format("{0:£#,##0.00;(£#,##0.00);0.00}", (sinceInception.RealisedProfitOrLoss + sinceInception.MarketMovements)))
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr class="dashed-border">
+                                        <td colspan="2">Closing value of portfolio as at @Model.AsAtDate.ToString("dd MMMM yyyy")</td>
+                                        <td></td>
+                                        <td>£@sinceInception.ClosingValue.ToString("N2")</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Performance</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>@((sinceInception.ApproximatePerformance * 100).ToString("N2"))%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="footnote">
+                    <hr class="footnote-dash" />
+                    <p><sup>2</sup> Excludes fund level charges</p>
+                </div>
+            </div>
+
+            <div style="page-break-after:always">&nbsp;</div>
+
+            <div class="section">
+                <div class="header-info">
+                    <span>
+                        PORTFOLIO STATEMENT – @Model.ReportSummary.ProductCode @Model.ReportSummary.PortfolioReference – @Model.PeriodStartDate?.ToString("dd/MM/yyyy") to @Model.EndDate?.ToString("dd/MM/yyyy")
+                    </span>
+                    <span class="general-invest">
+                        @Model.ReportSummary.ProductTitle
+                    </span>
+                </div>
+                <h4 id="TOC_Target3" class="bookmark toc heading">Portfolio valuation: <span style="color: gray">@Model.EndDate?.ToString("dd MMMM yyyy")</span></h4>
+                <hr />
+                <div class="section-nine">
+                    @if (Model.ReportHoldings.Any())
+                    {
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Holding</th>
+                                            <th>Units</th>
+                                            <th>Asset currency</th>
+                                            <th>Latest price (£)</th>
+                                            <th>Cost (£)</th>
+                                            <th>Gain/loss (£)</th>
+                                            <th>Gain/loss (%)</th>
+                                            <th>Market value (£)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var data in Model.ReportHoldings)
+                                        {
+                                            var fundName = @data.Holding;
+
+                                            <tr>
+                                                <td>
+                                                    @fundName
+                                                </td>
+                                                <td>
+                                                    @data.Units.ToString("N4")
+                                                </td>
+                                                <td>
+                                                    @data.AssetCurrency
+                                                </td>
+                                                <td>
+                                                    @data.LatestPrice.ToString("N4")
+                                                </td>
+                                                <td>
+                                                    @data.Cost.ToString("N2")
+                                                </td>
+                                                <td>
+                                                    @(data.GainLoss < 0 ? "(" + Math.Abs(data.GainLoss).ToString("N2") + ")" : Math.Abs(data.GainLoss).ToString("N2"))
+                                                </td>
+                                                <td>
+                                                    @(data.GainLossPercent < 0 ? "(" + Math.Abs(data.GainLossPercent).ToString("N2") + ")" : Math.Abs(data.GainLossPercent).ToString("N2"))
+                                                </td>
+                                                <td>
+                                                    @data.MarketValue.ToString("N2")
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                    <tfoot class="holdings-footer">
+                                        <tr>
+                                            <td colspan="5">Total</td>
+                                            <td colspan="2">
+                                                @(Model.ReportHoldings.Sum(x => x.GainLoss) < 0 ? "(" + Math.Abs(Model.ReportHoldings.Sum(x => x.GainLoss)).ToString("N2") + ")" : Math.Abs(Model.ReportHoldings.Sum(x => x.GainLoss)).ToString("N2"))
+                                            </td>
+                                            <td>@Model.ReportHoldings.Sum(x => x.MarketValue).ToString("N2")</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <p>No report holdings data</p>
+                    }
+
+                    <br />
+                    <br />
+
+                    <h4 class="text-underline">Custody statement</h4>
+                    <p>
+                        All assets reflected in this statement are held by Pershing Securities Limited, acting on your behalf as custodian.
+                        This statement reflects assets or funds held based on trade date. As a result, the proceeds of unsettled transactions may be included.
+                        Each investment includes a market value based on the last available price.
+                        A lack of market value means there is no available market price and is likely to be indicative of a lack of liquidity.
+                    </p>
+
+                    <p>
+                        The security name and quantity held are provided by Pershing; the price of each security, and the value, are provided by Mattioli Woods.
+                        All assets and money funds are held subject to the UK law on markets in financial instruments, unless otherwise indicated.
+                    </p>
+                </div>
+            </div>
+
+            <div style="page-break-after:always">&nbsp;</div>
+
+            <div class="section">
+                <div class="header-info">
+                    <span>
+                        PORTFOLIO STATEMENT – @Model.ReportSummary.ProductCode @Model.ReportSummary.PortfolioReference – @Model.PeriodStartDate?.ToString("dd/MM/yyyy") to @Model.EndDate?.ToString("dd/MM/yyyy")
+                    </span>
+                    <span class="general-invest">
+                        @Model.ReportSummary.ProductTitle
+                    </span>
+                </div>
+                <h4 id="TOC_Target4" class="bookmark toc heading">Trades in period</h4>
+                <hr />
+                <div class="section-ten">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Type</th>
+                                        <th>Reference</th>
+                                        <th style="width: 350px">Asset</th>
+                                        <th>Units</th>
+                                        <th>Price (£)</th>
+                                        <th>Value (£)</th>
+                                        <th>Prev. holding</th>
+                                        <th>New holding</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var trade in Model.SecurityTrades.Where(x => x.SecurityId != 1))
+                                    {
+                                        var fundName = @trade.Trade;
+
+                                        <tr>
+                                            <td>@trade.TradeDate.ToString("dd/MM/yyyy")</td>
+                                            <td>@trade.TradeType</td>
+                                            <td>@trade.Reference</td>
+                                            <td style="width: 350px">@fundName</td>
+                                            <td>@trade.Units.ToString("N4")</td>
+                                            <td>@trade.Price.ToString("N4")</td>
+                                            <td>@trade.TradeValue.ToString("N2")</td>
+                                            <td>@trade.PrevHolding.ToString("N4")</td>
+                                            <td>@trade.NewHolding.ToString("N4")</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="page-break-after:always">&nbsp;</div>
+
+            <div class="section">
+                <div class="header-info">
+                    <span>
+                        PORTFOLIO STATEMENT – @Model.ReportSummary.ProductCode @Model.ReportSummary.PortfolioReference – @Model.PeriodStartDate?.ToString("dd/MM/yyyy") to @Model.EndDate?.ToString("dd/MM/yyyy")
+                    </span>
+                    <span class="general-invest">
+                        @Model.ReportSummary.ProductTitle
+                    </span>
+                </div>
+                <h4 id="TOC_Target5" class="bookmark toc heading">Fees in period</h4>
+                <hr />
+                <div class="section-eleven">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Transaction date</th>
+                                        <th>Transaction description</th>
+                                        <th>Credit(£)</th>
+                                        <th>Debit(£)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var cash in Model.CashAccount.Where(x => x.TransactionTypeId == 8).OrderBy(x => x.TransactionDate))
+                                    {
+                                        <tr>
+                                            <td>@cash.TransactionDate.ToString("dd/MM/yyyy")</td>
+                                            <td>@cash.Narrative</td>
+                                            <td>@(cash.Credit != 0 ? Math.Abs(cash.Credit).ToString("N2") : string.Empty)</td>
+                                            <td>@(cash.Debit != 0 ? "(" + Math.Abs(cash.Debit).ToString("N2") + ")" : string.Empty)</td>
+                                        </tr>
+                                    }
+                                    <tr class="table-footer">
+                                        <td colspan="3">
+                                            Total fees and charges <sup>3</sup>
+                                        </td>
+                                        <td>
+                                            (@Math.Abs(Model.CashAccount.Where(x => x.TransactionTypeId == 8).Sum(x => x.Debit) + Model.CashAccount.Where(x => x.TransactionTypeId == 8).Sum(x => x.Credit)).ToString("N2"))
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="footnote">
+                    <hr class="footnote-dash" />
+                    <p><sup>3</sup> Excludes fund level charges</p>
+                </div>
+            </div>
+
+            <div style="page-break-before:always">&nbsp;</div>
+
+            <div class="section section-eleven">
+                <div class="header-info">
+                    <span>
+                        PORTFOLIO STATEMENT – @Model.ReportSummary.ProductCode @Model.ReportSummary.PortfolioReference – @Model.PeriodStartDate?.ToString("dd/MM/yyyy") to @Model.EndDate?.ToString("dd/MM/yyyy")
+                    </span>
+                    <span class="general-invest">
+                        @Model.ReportSummary.ProductTitle
+                    </span>
+                </div>
+                <h4 id="TOC_Target6" class="bookmark toc heading">Cash account statement</h4>
+                <hr />
+                <div class="section-eleven">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Transaction date</th>
+                                        <th>Settlement date</th>
+                                        <th>Transaction description</th>
+                                        <th>Credit(£)</th>
+                                        <th>Debit(£)</th>
+                                        <th>Balance(£)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var cash in Model.CashAccount.OrderBy(x => x.TransactionDate))
+                                    {
+                                        <tr>
+                                            <td>@cash.TransactionDate.ToString("dd/MM/yyyy")</td>
+                                            <td>@cash.SettlementDate.ToString("dd/MM/yyyy")</td>
+                                            <td>@cash.Narrative</td>
+                                            <td>@(cash.Credit != 0 ? Math.Abs(cash.Credit).ToString("N2") : string.Empty)</td>
+                                            <td>@(cash.Debit != 0 ? "(" + Math.Abs(cash.Debit).ToString("N2") + ")" : string.Empty)</td>
+                                            <td>@Math.Abs(cash.Balance).ToString("N2")</td>
+                                        </tr>
+                                    }
+                                    <tr class="table-footer">
+                                        <td colspan="5">Cash balance as at @Model.AsAtDate.ToString("dd MMMM yyyy")</td>
+                                        <td>
+                                            @Math.Abs(Model.CashAccount.OrderBy(x => x.TransactionDate).ToList().LastOrDefault()?.Balance ?? 0).ToString("N2")
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="page-break-before:always">&nbsp;</div>
+
+            <div class="section">
+                <div class="header-info">
+                    <span>
+                        PORTFOLIO STATEMENT – @Model.ReportSummary.ProductCode @Model.ReportSummary.PortfolioReference – @Model.PeriodStartDate?.ToString("dd/MM/yyyy") to @Model.EndDate?.ToString("dd/MM/yyyy")
+                    </span>
+                    <span class="general-invest">
+                        @Model.ReportSummary.ProductTitle
+                    </span>
+                </div>
+                <h4 id="TOC_Target7" class="bookmark toc heading">Further information</h4>
+                <hr />
+                <div class="section-twelve">
+                    <div class="row">
+                        <div class="row">
+                            <h4>Pricing/valuation of investments</h4>
+                            <p>
+                                The pricing used for valuation purposes herein is provided by Mattioli Woods plc and although every effort is made to ensure all prices are fully reflective
+                                of true market prices, we cannot be held responsible for any inaccuracies at an individual valuation point. Prices not available from this defined
+                                source are added manually and taken from the most accurate available third‐party source such as a fund administrator. Prices taken for valuation
+                                are either the last traded price, where that is known or the mid valuation on a bid‐offer basis.
+                            </p>
+                        </div>
+                        <div class="row">
+                            <h4>Performance calculations</h4>
+                            <p>
+                                Performance calculations are based on the accumulative daily gain percentage. Calculations will be shown in the net returns calculation reflecting
+                                and inclusive of all the charges made by Mattioli Woods plc and Pershing (the Custodian) in executing trades and administering the portfolio.
+                            </p>
+                        </div>
+                        <div class="row">
+                            <h4>Risk level</h4>
+                            <p>
+                                The risk level applied to your portfolio(s) resulted from the Personal Risk Questionnaire taken by you when you opened the portfolio, or subsequently when you retook the Personal Risk Questionnaire.
+                            </p>
+                        </div>
+                        <div class="row">
+                            <h4>Risk review (at least annually)</h4>
+                            <p>
+                                Your risk level should be periodically reviewed (at least annually) to ensure your portfolio continues to match your investment requirements.
+                                Should your financial circumstances change, we recommend you reassess your investments and take appropriate action where required.
+                            </p>
+                        </div>
+                        <div class="row">
+                            <h4>Management fees</h4>
+                            <p>
+                                Mattioli Woods plc management fees are charged quarterly in arrears based on the value of your portfolio on a particular day towards the end of the quarter.
+                                The management fee is taken from the cash held in the portfolio as per the client agreement.
+                        </div>
+                    </div>
+                </div>
+
+                <div style="page-break-before:always">&nbsp;</div>
+
+                <div class="section-twelve">
+                    <div class="header-info">
+                        <span>
+                            PORTFOLIO STATEMENT – @Model.ReportSummary.ProductCode @Model.ReportSummary.PortfolioReference – @Model.PeriodStartDate?.ToString("dd/MM/yyyy") to @Model.EndDate?.ToString("dd/MM/yyyy")
+                        </span>
+                    </div>
+                    <div class="row">
+                        <h4>Prices may fluctuate in your investments</h4>
+                        <p>
+                            Investors should be aware that prices may fall as well as rise and the income derived can go down as well as up. When buying or selling any investment that fluctuates in price or value, you may get back less than you invested. Past performance is not necessarily a guide to future returns.
+                            The value of investments denominated in foreign currency may fall as a result of exchange rate movements. Your capital is at risk. Mattioli Woods do not provide tax advice and you should always seek professional guidance from an accountant or tax adviser on your individual circumstances and tax position.
+                        </p>
+                    </div>
+                    <div class="row">
+                        <h4>Complaints</h4>
+                        <p>
+                            While we endeavour to provide the best possible service to our clients, there may be instances where you are not 100% satisfied and wish to raise your concerns with us.
+                            Where you wish to complain about the services provided by Mattioli Woods plc, you should bring it to our attention.
+                            In the first instance, please write to our Client Experience Team at the address below or email clientcare@mattioliwoods.com and we will investigate the points raised and issue a final response.
+                            If you remain dissatisfied following Mattioli Woods plc’s investigation, you may have the right to refer your complaint to the Financial Ombudsman Service. The contact details are:
+                        </p>
+
+                        <table>
+                            <tr>
+                                <td>Address:</td>
+                                <td>Client Experience Team, Mattioli Woods plc, 1 New Walk Place, Leicester, LE1 6RU</td>
+                            </tr>
+                            <tr>
+                                <td>Phone:</td>
+                                <td>0116 240 8700</td>
+                            </tr>
+                            <tr>
+                                <td>Email:</td>
+                                <td>clientcare@mattioliwoods.com</></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <h4>The Financial Ombudsman Service</h4>
+                        <p>The Financial Ombudsman Service can be contacted by phone on 0800 023 4567, or via their website at www.financial‐ombudsman.org.uk</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,322 @@
+{
+  "mandateDate": "2022-01-01 12:32:12",
+  "mandateReference": "M0001234",
+  "customerInfo": {
+    "title": "Customer information",
+    "personalDetails": {
+      "firstName": "Tolu",
+      "middleName": null,
+      "surname": "Jem",
+      "dateOfBirth": "1992-12-09",
+      "sex": "Male",
+      "landline": null,
+      "mobile": "0123456798",
+      "customerReference": "AB123456"
+    },
+    "currentResidentialAddress": {
+      "flatApartmentSubBuilding": "1596",
+      "buildingNumber": null,
+      "buildingName": null,
+      "roadStreet": "C/Block, Gali no-12, SGM Nagar",
+      "town": "faridabad",
+      "stateProvince": "Haryana",
+      "postZipCode": "121001",
+      "district": "Faridabad",
+      "country": "India",
+      "from": "20 September 1994",
+      "address": "1596 C/Block, Gali no-12, SGM Nagar faridabad faridabad haryana IN 121001"
+    },
+    "contactInformation": {
+      "email": "sachin.dhankar@tillertech.com",
+      "mobileTelephone": null,
+      "landlineTelephone": null
+    },
+    "gPSLocation": {
+      "latitude": null,
+      "longitude": null
+    },
+    "termsAgreed": "2022-01-01 12:32:12"
+  },
+  "idAndLiveness": {
+    "title": "ID & Liveness – Review needed",
+    "description": "The following information was retrieved from the customer identity document:",
+    "header": {
+      "status": "Passed",
+      "documentType": "Passport",
+      "documentName": "United Kingdom - National Passport - Front - 2015",
+      "countryName": "United Kingdom",
+      "initiatedDate": "2022-12-05 at 15:04:58"
+    },
+    "summary": [
+      {
+        "property": "Nationality type",
+        "value": "British Citizen"
+      },
+      {
+        "property": "Birth date",
+        "value": "1991-01-01"
+      },
+      {
+        "property": "Exiry date",
+        "value": "2029-01-01"
+      },
+      {
+        "property": "Last name",
+        "value": "Doe"
+      },
+      {
+        "property": "First name",
+        "value": "Jane Catherine"
+      },
+      {
+        "property": "Document number",
+        "value": "123456789"
+      },
+      {
+        "property": "Nationality code",
+        "value": "GBR"
+      },
+      {
+        "property": "Sex",
+        "value": "Female"
+      },
+      {
+        "property": "MRZ Full",
+        "value": "P< GBRDOE<< JANE<CATHERINE<DOE<<<<<<<<1234557174GBR9011234557174<<<<<<<<<<<<<< 08"
+      },
+      {
+        "property": "Birthplace",
+        "value": "Kent"
+      },
+      {
+        "property": "Issue date",
+        "value": "1990-01-01"
+      },
+      {
+        "property": "Issuing authority",
+        "value": "HMPO"
+      },
+      {
+        "property": "MRZ line 1",
+        "value": "P< GBRDOE<< JANE<CATHERINE<DOE<<<<<<<<"
+      },
+      {
+        "property": "MRZ line 2",
+        "value": "1234557174GBR9011234557174<<<<<<<<<<<<<< 08"
+      },
+      {
+        "property": "Issuing state name",
+        "value": "Not available"
+      }
+    ],
+    "summaryImages": [
+      {
+        "path": "https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg",
+        "name": "front_ocr",
+        "status": null
+      },
+      {
+        "path": "https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg",
+        "name": "front_nfc",
+        "status": null
+      }
+    ],
+    "verifiedDocument": {
+      "status": "Passed",
+      "title": "Verified Document",
+      "recognisedDocument": "United Kingdom - National Passport - Front - 2015",
+      "expectedDocument": "Passport"
+    },
+    "details": [
+      {
+        "status": "Passed",
+        "check": "Document front side type check",
+        "score": null
+      },
+      {
+        "status": "Passed",
+        "check": "Document expiry",
+        "score": null
+      },
+      {
+        "status": "Passed",
+        "check": "Document support",
+        "score": null
+      },
+      {
+        "status": "Passed",
+        "check": "Document validation",
+        "score": null
+      },
+      {
+        "status": "Passed",
+        "check": "Document type match",
+        "score": null
+      }
+    ],
+    "images": [],
+    "liveness": {
+      "status": "Passed",
+      "title": "Liveness",
+      "livenessOverall": "None",
+      "failureReason": null,
+      "images": [
+        {
+          "path": "https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg",
+          "name": "Tily straight",
+          "status": null
+        },
+        {
+          "path": "https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg",
+          "name": "Smile",
+          "status": null
+        },
+        {
+          "path": "https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg",
+          "name": "Frown",
+          "status": null
+        },
+        {
+          "path": "https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg",
+          "name": "Tilt down",
+          "status": null
+        }
+      ]
+    },
+    "verifyFaceMatch": {
+      "status": "Passed",
+      "title": "Verify Face Match",
+      "selfiePhoto": {
+        "path": "https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg",
+        "name": "Selfie photo",
+        "status": "Passed",
+        "score": "64.8%"
+      },
+      "IdPhoto": {
+        "path": "https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg",
+        "name": "Selfie photo",
+        "status": "Passed",
+        "score": "64.8%"
+      },
+      "chipPhoto": {
+        "path": "https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg",
+        "name": "Chip photo",
+        "status": "Passed",
+        "score": "64.8%"
+      }
+    }
+  },
+  "pepAndSanction": {
+    "title": "PEP & Sanctions Screening – Passed",
+    "description": "This individual has been matched against their PEP &Sanction Screening",
+    "header": {
+      "status": "Passed",
+      "result": "Pass",
+      "score": "0.0",
+      "countryName": "International",
+      "timestamp": "2022 - 12 - 05 at 15:04:58"
+    },
+    "results": [
+      {
+        "title": "International Sanctions Screening(Enhanced)",
+        "status": "Passed",
+        "description": "International Sanctions(Enhanced) check.Provides authentication against multiple Sanctions and Enforcement lists across the globe(lists are selectable at profile level)",
+        "reasons": [
+          {
+            "status": null,
+            "reason": "Supplied full name did not match.",
+            "key": null,
+            "code": null
+          },
+          {
+            "status": null,
+            "reason": "Supplied dob name did not match.",
+            "key": null,
+            "code": null
+          }
+        ]
+      },
+      {
+        "title": "International PEP(Enhanced)",
+        "status": "Passed",
+        "description": "International Sanctions(Enhanced) check.Provides authentication against multiple Sanctions and Enforcement lists across the globe(lists are selectable at profile level)",
+        "reasons": [
+          {
+            "status": null,
+            "reason": "Supplied full name did not match.",
+            "key": null,
+            "code": null
+          },
+          {
+            "status": null,
+            "reason": "Supplied dob name did not match.",
+            "key": null,
+            "code": null
+          }
+        ]
+      }
+    ]
+  },
+  "addressVerification": {
+    "title": "Address verification – Review needed",
+    "description": "The individual has not been successfully verified against their address",
+    "header": {
+      "status": "Passed"
+    },
+    "results": [
+      {
+        "title": "UK Landline",
+        "status": "Failed",
+        "description": "UK Edited Voters database that provides authentication of name and address.",
+        "reasons": [
+          {
+            "status": "Failed",
+            "reason": "No Match at address",
+            "key": "Fullname",
+            "code": null
+          },
+          {
+            "status": "Failed",
+            "reason": "Supplied Firstname name did not match.",
+            "key": "FirstName",
+            "code": null
+          }
+        ]
+      },
+      {
+        "title": "Credit Header",
+        "status": "Passed",
+        "description": "UK Edited Voters database that provides authentication of name and address.",
+        "reasons": [
+          {
+            "status": "Failed",
+            "reason": "No Match at address",
+            "key": "Fullname",
+            "code": null
+          },
+          {
+            "status": "Failed",
+            "reason": "Supplied Firstname name did not match.",
+            "key": "FirstName",
+            "code": null
+          }
+        ]
+      }
+    ]
+  },
+  "proofOfAddress": {
+    "documentImage": "https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg",
+    "description": "The customer captured the following document as proof of address.",
+    "documentType": "Telephone bill",
+    "issueDate": "1994 - 12 - 01",
+    "title": "Proof of address – Uploaded",
+    "result": "Passed"
+  },
+  "comments": [
+    {
+      "date": "2022-12-05T15:10:15.342024Z",
+      "user": "sachintest.dhankar@tillertech.com",
+      "comment": "this is a test comment"
+    }
+  ]
+}

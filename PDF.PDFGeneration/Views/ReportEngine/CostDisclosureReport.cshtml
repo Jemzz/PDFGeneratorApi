@@ -1,0 +1,319 @@
+﻿@using Tiller.WXL.Core.Utilities
+@model Tiller.WXL.Models.ViewModels.CostDisclosureReportViewModel
+
+@{
+    ViewBag.Title = "Cost Disclosure Report";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Test</title>
+    @if (Model.Mode == 2)
+    {
+        <link rel="stylesheet" href="~/css/bootstrap.min.css" crossorigin="anonymous">
+        <link rel="stylesheet" href="~/css/custom/cost-disclosure/cost-disclosure.css" crossorigin="anonymous">
+    }
+    else
+    {
+        <link rel="stylesheet" href="css/bootstrap.min.css" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/custom/cost-disclosure/cost-disclosure.css" crossorigin="anonymous">
+    }
+
+</head>
+<body>
+    <div class="container body-content">
+        <div class="main-container">
+            <div class="section">
+                <h1 class="bookmark heading">Content</h1>
+                <hr />
+                <a href="#TOC_Target1" id="TOC_Title1" class="toc contents-page-style">Initial and ongoing charges - @Model.PeriodStartDate?.ToString("dd/MM/yyyy") to @Model.EndDate?.ToString("dd/MM/yyyy")</a><br><br>
+                <a href="#TOC_Target2" id="TOC_Title2" class="toc contents-page-style">Cumulative effect of costs and charges on return on investment - @Model.ReportSummary.PortfolioInception.ToString("dd/MM/yyyy") to @Model.EndDate?.ToString("dd/MM/yyyy")</a><br><br>
+                <a href="#TOC_Target3" id="TOC_Title3" class="toc contents-page-style">Further information</a>
+            </div>
+
+            <div style="page-break-before:always">&nbsp;</div>
+
+            <div class="section">
+                <div class="header-info mb-4">
+                    <span>
+                        PORTFOLIO STATEMENT – @Model.ReportSummary.ProductCode @Model.ReportSummary.PortfolioReference – @Model.PeriodStartDate?.ToString("dd/MM/yyyy") to @Model.EndDate?.ToString("dd/MM/yyyy")
+                    </span>
+                    <span class="general-invest">
+                        @Model.ReportSummary.ProductTitle
+                    </span>
+                </div>
+
+                <p>
+                    Please find enclosed your Total Charges Summary. This document details the costs and effect of charges on your investment performance for the 12-month period up to the above report date. It only relates to the portfolio referenced above (e.g. your ISA/GIA/JISA) so if you have multiple pots with us, you will receive a separate document for each pot. As a reminder, when you invested with us you were provided with a suitability report which included the estimated costs of investing specific to your investment. You were also informed of the estimated costs when you opened your MWise
+                    account. While we have tried to be as accurate as possible, some assumptions may be made if the underlying charges have not been formally disclosed to us. For more information on MWise charges, please visit our costs calculator.
+                </p>
+
+                @{
+                    var data = Model.AnalysisOfMovements.Any() ? Model.AnalysisOfMovements.FirstOrDefault(x => x.ValuationRangeType != "Since Inception") : new Tiller.WXL.Models.CostDisclosureModels.CostDisclosureAnalysisOfMovementModel();
+                }
+
+                <h4 id="TOC_Target1" class="bookmark toc heading font-weight-bold">Initial and ongoing charges</h4>
+                <hr class="mb-4" />
+                <div class="section-one">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>@Model.ReportSummary.ProductCode @Model.ReportSummary.PortfolioReference - @Model.ReportSummary.ProductTitle</p>
+
+                            <hr class="edge-horizon" />
+                            <table class="table dashed-border">
+                                <tbody>
+                                    <tr>
+                                        <td class="font-weight-bold">Initial charges:</td>
+                                        <td colspan="3">There is no initial fee when investing through MWise and all our fees are ongoing</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="font-weight-bold" colspan="2">Ongoing charges:</td>
+                                        <td class="font-weight-bold">Percentage:</td>
+                                        <td class="font-weight-bold">Monetary:</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Management fee</td>
+                                        <td>@data.FeesAndExpensesChargedPercent.Rnd(2).ToString("N2")%</td>
+                                        <td>£@Math.Abs(data.FeesAndExpensesCharged.Rnd(2)).ToString("N2")</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Ongoing MW investment management charge</td>
+                                        <td>@((Model.OngoingCharge.InvestmentMgntPercentage.Rnd(2)).ToString("N2"))%</td>
+                                        <td>£@((Model.OngoingCharge.InvestmentMgntCharge.Rnd(2)).ToString("N2"))</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Ongoing multi-asset fund charge</td>
+                                        <td>@((Model.OngoingCharge.MultiAssetFundChargePercentage.Rnd(2)).ToString("N2"))%</td>
+                                        <td>£@((Model.OngoingCharge.MultiAssetFundCharge.Rnd(2)).ToString("N2"))</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Ongoing fund manager charge</td>
+                                        <td>@((Model.OngoingCharge.FundManagerChargePercentage.Rnd(2)).ToString("N2"))%</td>
+                                        <td>£@((Model.OngoingCharge.FundManagerCharge.Rnd(2)).ToString("N2"))</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Mattioli Woods Retained Interest </td>
+                                        <td>@((Model.OngoingCharge.RetainedInterestPercentage.Rnd(2)).ToString("N2"))%</td>
+                                        <td>£@((Model.OngoingCharge.RetainedInterest.Rnd(2)).ToString("N2"))</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td class="float-right pr-4 pt-2 mt-1 font-weight-bold">Total</td>
+                                        <td class="font-weight-bold">
+                                            <hr />
+                                            @((Model.OngoingCharge.FundManagerChargePercentage.Rnd(2) + Math.Abs(data.FeesAndExpensesChargedPercent.Rnd(2)) + Model.OngoingCharge.InvestmentMgntPercentage.Rnd(2) + Model.OngoingCharge.MultiAssetFundChargePercentage.Rnd(2) + +Model.OngoingCharge.RetainedInterestPercentage.Rnd(2)).ToString("N2"))%
+                                        </td>
+                                        <td class="font-weight-bold">
+                                            <hr />
+                                            £@((Model.OngoingCharge.FundManagerCharge.Rnd(2) + Math.Abs(data.FeesAndExpensesCharged.Rnd(2)) + Model.OngoingCharge.InvestmentMgntCharge.Rnd(2) + Model.OngoingCharge.MultiAssetFundCharge.Rnd(2) + Model.OngoingCharge.RetainedInterest.Rnd(2)).ToString("N2"))
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <hr class="edge-horizon" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="page-break-after:always">&nbsp;</div>
+
+            <div class="section section-start">
+                <div class="header-info mb-2">
+                    <span>
+                        PORTFOLIO STATEMENT – @Model.ReportSummary.ProductCode @Model.ReportSummary.PortfolioReference – @Model.PeriodStartDate?.ToString("dd/MM/yyyy") to @Model.EndDate?.ToString("dd/MM/yyyy")
+                    </span>
+                    <span class="general-invest">
+                        @Model.ReportSummary.ProductTitle
+                    </span>
+                </div>
+                <h4 id="TOC_Target2" class="bookmark toc heading font-weight-bold">Cumulative effect of costs and charges on return on investment</h4>
+                <hr class="mb-4" />
+                <div class="section-two">
+                    <div class="row">
+                        <div class="col-md-12">
+
+
+
+                            <h5>@Model.ReportSummary.ProductCode @Model.ReportSummary.PortfolioReference - @Model.ReportSummary.ProductTitle</h5>
+
+                            <hr class="edge-horizon" />
+                            <table class="table dashed-border">
+                                <tbody>
+
+                                    <tr>
+                                        <td class="font-weight-bold">Movements:</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Statement period start value</td>
+                                        <td>£@data.OpeningValuation.ToString("N2")</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Statement period end value</td>
+                                        <td>£@data.ClosingValue.ToString("N2")</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>New monies invested</td>
+                                        <td>£@data.CapitalIntroduced.ToString("N2")</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Monies withdrawn</td>
+                                        <td>@string.Format("{0:£#,##0.00;(£#,##0.00);0.00}", data.CapitalWithdrawn)</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Income paid</td>
+                                        <td>
+                                            £@data.IncomeReceived.ToString("N2")
+                                            <hr />
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold" colspan="2">Effect on return:</td>
+                                        <td class="font-weight-bold">Percentage:</td>
+                                        <td class="font-weight-bold">Monetary:</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Return of your investment after the deduction of charges</td>
+                                        <td>@data.ROIAfterChargePercent.Rnd(2).ToString("N2")%</td>
+                                        <td>@string.Format("{0:£#,##0.00;(£#,##0.00);0.00}", data.ROIAfterCharge)</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Cumulative effect of costs and charges</td>
+                                        <td>
+                                            @((Model.OngoingCharge.FundManagerChargePercentage.Rnd(2) + Math.Abs(data.FeesAndExpensesChargedPercent.Rnd(2)) + Model.OngoingCharge.InvestmentMgntPercentage.Rnd(2) + Model.OngoingCharge.MultiAssetFundChargePercentage.Rnd(2)).ToString("N2"))%
+                                            <hr />
+                                        </td>
+                                        <td>£@((Model.OngoingCharge.FundManagerCharge.Rnd(2) + Math.Abs(data.FeesAndExpensesCharged.Rnd(2)) + Model.OngoingCharge.InvestmentMgntCharge.Rnd(2) + Model.OngoingCharge.MultiAssetFundCharge.Rnd(2)).ToString("N2"))</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <hr class="edge-horizon" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="page-break-after:always">&nbsp;</div>
+
+            <div class="section">
+                <div class="header-info mb-4">
+                    <span>
+                        PORTFOLIO STATEMENT – @Model.ReportSummary.ProductCode @Model.ReportSummary.PortfolioReference – @Model.PeriodStartDate?.ToString("dd/MM/yyyy") to @Model.EndDate?.ToString("dd/MM/yyyy")
+                    </span>
+                </div>
+                <h4 id="TOC_Target3" class="bookmark toc heading font-weight-bold">Further information</h4>
+                <hr />
+                <div class="section-three">
+                    <div class="row">
+                        <div class="row">
+                            <h4 class="font-weight-bold">Management fee</h4>
+                            <p>
+                                The MW management fee is charged for providing you with an online simplified advice service. It includes an investment services charge for the provision of investment services associated with the
+                                processing and servicing of investments and other costs incurred on behalf of clients. Pershing is paid an element of this charge for the services it provides including dealing, clearing, settlement, safe
+                                custody and other associated services. The actual figure paid to Pershing will be dependent on the aggregate value of assets held by Mattioli Woods’ clients with Pershing.
+                                A full breakdown of the services provided by Pershing and its respective costs is available on request. Mattioli Woods retains the balance of this fee after Pershing are paid.
+                            </p>
+                        </div>
+                        <div class="row">
+                            @*Due to a formatting issue, A table is used here to prevent the two lines showing on one line*@
+                            <table class="noBorder">
+                                <tr>
+                                    <td><h4 class="font-weight-bold">Ongoing MW investment management charge</h4></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>
+                                            This fee is paid to Mattioli Woods. It is for managing the multi-asset funds and passive multi-asset funds.
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <h4 class="font-weight-bold">Ongoing multi-asset fund charge</h4>
+                            <p>
+                                This fee is paid to FundRock Partners Limited who are the Authorised Corporate Director (or ACD). FundRock Partners Limited provide the fund structure for our multi-asset funds. Mattioli Woods may retain an element of this charge.
+                            </p>
+                        </div>
+                        <div class="row">
+                            <h4 class="font-weight-bold">Ongoing fund manager charge</h4>
+                            <p>
+                                These are third party fund manager costs which are charged for the management of the underlying funds held within the multi-asset funds and the passive multi-asset funds.
+                            </p>
+                        </div>
+                        <div class="row">
+                            <h4 class="font-weight-bold">Mattioli Woods Retained Interest</h4>
+                            <p>
+                                Outside of the interest earnt on cash within your portfolio, we retain interest at a variable rate applicable only to the 0.8% held as cash. The percentage figure within the table indicates the interest retained by us as a percentage during the relevant period.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="page-break-before:always">&nbsp;</div>
+
+                <div class="section-three">
+                    <div class="header-info mb-4">
+                        <span>
+                            PORTFOLIO STATEMENT – @Model.ReportSummary.ProductCode @Model.ReportSummary.PortfolioReference – @Model.PeriodStartDate?.ToString("dd/MM/yyyy") to @Model.EndDate?.ToString("dd/MM/yyyy")
+                        </span>
+                    </div>
+                    <div class="row">
+                        <h4 class="font-weight-bold">Complaints</h4>
+                        <p>
+                            While we endeavour to provide the best possible service to our clients, there may be instances where you are not 100% satisfied and wish to raise your concerns with us.
+                            Where you wish to complain about the services provided by Mattioli Woods plc, you should bring it to our attention.
+                            In the first instance, please write to our Client Experience Team at the address below or email clientcare@mattioliwoods.com and we will investigate the points raised and issue a final response.
+                            If you remain dissatisfied following Mattioli Woods plc’s investigation, you may have the right to refer your complaint to the Financial Ombudsman Service. The contact details are:
+                        </p>
+                    </div>
+                    <div class="row">
+
+                        <table>
+                            <tr>
+                                <td class="font-weight-bold">Address: &nbsp;</td>
+                                <td>Client Experience Team, Mattioli Woods plc, 1 New Walk Place, Leicester, LE1 6RU</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bold">Phone:</td>
+                                <td>0116 240 8700</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bold">Email:</td>
+                                <td>clientcare@mattioliwoods.com</></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <h4 class="font-weight-bold">The Financial Ombudsman Service</h4>
+                        <p>The Financial Ombudsman Service can be contacted by phone on 0800 023 4567, or via their website at www.financial‐ombudsman.org.uk</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

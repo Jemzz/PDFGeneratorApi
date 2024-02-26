@@ -1,0 +1,47 @@
+﻿@font-face {
+    font-family: 'Inter';
+    src: url('../../font/Inter-Regular.ttf');
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.cover-page {
+    height: 1448px;
+    width: 100%;
+    padding-right: 50px;
+    padding-left: 50px;
+    padding-top: 40px;
+    color: #000000;
+}
+
+.verify-cover-page {
+    background-color: #09093e;
+    color: #fff;
+}
+
+    .cover-page p {
+        font-size: 20px;
+    }
+
+.date-heading {
+    height: 540px;
+}
+
+.name-heading {
+    height: 350px;
+}
+
+h2 {
+    font-size: 46px;
+    font-weight: bold;
+}
+
+.reference-section {
+    height: 300px;
+}
+
+.footer-section img {
+    height: 60px;
+}

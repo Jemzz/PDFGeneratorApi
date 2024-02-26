@@ -1,0 +1,158 @@
+﻿@font-face {
+    font-family: 'Inter';
+    src: url('../../font/Inter-Regular.ttf');
+}
+
+body {
+    padding-bottom: 20px;
+    font-family: 'Inter', sans-serif;
+    color: #2d374b;
+}
+
+h1 {
+    font-size: 2.8em;
+}
+
+.row {
+    margin: 0;
+}
+
+table tbody td {
+    vertical-align: top;
+}
+
+table {
+    width: 100%;
+}
+
+.col-lg-6 {
+    width: 50%;
+    float: left;
+}
+
+.header-icon {
+    width: 80px;
+    height: 70px;
+}
+
+.sub-heading-icon {
+    width: 40px;
+    height: 35px;
+}
+
+i {
+    font-size: 20px;
+    color: white;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+/* Content page */
+
+.content-section a {
+    color: #2d374b;
+}
+
+.contents-page-style {
+    display: inline-block;
+}
+
+
+
+.table-of-content {
+    width: 100%;
+}
+
+    .table-of-content tbody > tr, .content-section .main-heading {
+        border-bottom: 2px solid #d5d7db;
+    }
+
+        .table-of-content tbody > tr > :nth-child(1) {
+            width: 10%;
+        }
+
+        .table-of-content tbody > tr > :nth-child(2) {
+            width: 10%;
+        }
+
+        .table-of-content tbody > tr td {
+            padding-left: 2px;
+        }
+
+/* client info */
+.info-section table tbody .info {
+    border-bottom: 2px solid #d5d7db;
+}
+
+tr.info > td {
+    padding-bottom: 1em;
+    padding-top: 1em;
+}
+
+tr.info-with-comments > td {
+    padding-top: 1em;
+}
+
+tr.info > td:nth-child(2) {
+    padding-right: 28px;
+}
+
+.main-heading {
+    color: #d3914f;
+    padding-bottom: 25px;
+}
+
+    .main-heading > td {
+        padding-bottom: 25px;
+        padding-top: 18px;
+    }
+
+    .main-heading h1 {
+        font-weight: 700;
+    }
+
+.client-info-header h1 {
+    margin-bottom: 2.5rem;
+    margin-top: 1rem;
+}
+
+.small-details {
+    width: 300px;
+}
+
+small {
+    font-size: 80%;
+}
+
+/*.image-small {
+    border-radius: 30px;
+    width: 120px;
+    margin-bottom: 14px;
+    margin-top: 20px;
+    max-height: 200px;
+}*/
+
+.comment-section > table {
+    border-collapse: separate;
+    border-spacing: 0 20px;
+    border-bottom: 2px solid #d5d7db;
+}
+
+.commentBox {
+    border-radius: 13px;
+    padding: 10px 27px;
+    background-color: #f4f4f4;
+    /*  white-space: pre-wrap;
+    word-wrap: break-word*/
+}
+
+.subtable > thead > tr {
+    background-color: #f4f4f4;
+    font-size: 12px;
+}
+
+.dotted-border-top {
+    border-top: dotted 3px #dee2e6;
+}

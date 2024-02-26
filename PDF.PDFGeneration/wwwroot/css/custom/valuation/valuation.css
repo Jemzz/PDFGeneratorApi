@@ -1,0 +1,201 @@
+﻿
+@font-face {
+    font-family: "Museo Sans";
+    src: local("Museo Sans"), 
+        url('https://usuwswxlonboardappmw.azurewebsites.net/assets/fonts/museo-sans/MuseoSans-100.otf') format("opentype"), 
+        url('https://usuwswxlonboardappmw.azurewebsites.net/assets/fonts/museo-sans/MuseoSans-300.otf') format("opentype"), 
+        url('https://usuwswxlonboardappmw.azurewebsites.net/assets/fonts/museo-sans/MuseoSans_500.otf') format("opentype")
+}
+
+
+body {
+    font-family: 'Museo Sans', Calibri;
+    width: 100%
+}
+
+h4 {
+    font-size: 20px;
+    margin-bottom: 0 !important;
+}
+
+.dashed-border {
+    border-bottom: #4A4F55;
+    border-bottom-style: dashed;
+    border-width: 1px;
+}
+
+.table-footer {
+    border-bottom: #000;
+    border-bottom-style: solid;
+    border-width: 1px;
+}
+
+.table-footer td {
+    font-weight: bold;
+}
+
+.header-info {
+    background-color: #4A4F55;
+    color: #fff;
+    font-size: 16px;
+    padding: 6px;
+}
+
+    .header-info .general-invest {
+        float: right;
+    }
+
+.section section-start {
+    margin-top: -10px;
+}
+
+.section hr:not(.footnote-dash) {
+    margin-top: 6px !important;
+}
+
+.section-eleven hr {
+    margin-top: 8px !important;
+}
+
+.section-twelve table {
+    border: 0;
+}
+
+table {
+    border: 1px solid #f06617;
+    margin-bottom: 10px !important;
+}
+
+    table thead {
+        background-color: #4A4F55;
+    }
+
+    table th, table td {
+        border: 0 !important;
+        padding: 4px !important;
+        font-weight: normal;
+    }
+
+.section-seven table, .section-eight table {
+    border: 0 !important;
+}
+
+    .section-seven table thead,
+    .section-eight table thead {
+        background-color: #fff;
+    }
+
+    .section-seven table td, .section-seven table th,
+    .section-eight table td, .section-eight table th {
+        border: 0 !important;
+        text-align: left;
+    }
+
+    .section-seven table tbody tr :nth-child(-n+2), .section-seven table thead tr :nth-child(-n+2),
+    .section-eight table tbody tr :nth-child(-n+2), .section-eight table thead tr :nth-child(-n+2) {
+        text-align: left !important;
+    }
+
+    .section-seven table tbody tr > td, .section-seven table thead tr > th,
+    .section-eight table tbody tr > td, .section-eight table thead tr > th {
+        width: 30%;
+    }
+
+    .section-seven table tbody tr td:nth-child(2), .section-seven table thead tr th:nth-child(2),
+    .section-eight table tbody tr td:nth-child(2), .section-eight table thead tr th:nth-child(2) {
+        width: 50% !important;
+    }
+
+    .section-seven table tbody tr td:nth-child(3), .section-seven table thead tr th:nth-child(3),
+    .section-eight table tbody tr td:nth-child(3), .section-eight table thead tr th:nth-child(3) {
+        width: 10% !important;
+    }
+
+    .section-seven table td, .section-eight table td, .section-nine table td, .section-ten table td {
+        padding: 4px;
+    }
+
+    .section-seven table hr, .section-eight table hr,
+    .section-nine table hr, .section-eleven table hr {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+.section-nine table, .section-ten table, .section-eleven table {
+    border: 0;
+}
+
+    .section-ten table tbody tr > td {
+        width: 1px !important;
+        text-align: left;
+    }
+
+.section-ten .table {
+    table-layout: fixed;
+    /*width: 500px;*/
+}
+
+.section-twelve .row p {
+    word-wrap: break-word;
+}
+
+.section-twelve .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.section-twelve h4 {
+    font-size: 18px;
+    padding-bottom: 10px;
+}
+
+.heading {
+    color: #4A4F55;
+    font-size: 20px;
+    /*margin-bottom: 18px !important;*/
+}
+
+.heading h1{
+    margin-top:-20px !important;
+}
+
+hr:not(.footnote-dash) {
+    border-color: #4A4F55;
+    border-width: 2px;
+}
+
+.text-underline{
+    padding-bottom: 8px;
+}
+
+th {
+    color: white;
+}
+
+.contents-page-style {
+    font-size: 18px;
+    color: #000;
+    margin-bottom: 40px !important;
+}
+
+.holdings-footer td{
+    padding-top: 30px !important;
+}
+.holdings-footer {
+    border-bottom: 1px solid #000;
+}
+
+.footnote{
+    margin-bottom: 0;
+}
+
+.footnote .footnote-dash {
+    width: 160px;
+    margin-left: 0;
+    margin-bottom: 8px;
+    border-color: black;
+}
+
+.footnote p{
+    margin:0;
+}

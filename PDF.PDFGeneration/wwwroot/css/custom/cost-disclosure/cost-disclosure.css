@@ -1,0 +1,193 @@
+﻿
+@font-face {
+    font-family: "Museo Sans";
+    src: local("Museo Sans"), 
+        url('https://usuwswxlonboardappmw.azurewebsites.net/assets/fonts/museo-sans/MuseoSans-100.otf') format("opentype"), 
+        url('https://usuwswxlonboardappmw.azurewebsites.net/assets/fonts/museo-sans/MuseoSans-300.otf') format("opentype"), 
+        url('https://usuwswxlonboardappmw.azurewebsites.net/assets/fonts/museo-sans/MuseoSans_500.otf') format("opentype")
+}
+
+
+body {
+    font-family: 'Museo Sans', Calibri;
+    width: 100%
+}
+
+h4 {
+    font-size: 20px;
+    margin-bottom: 0 !important;
+}
+
+.dashed-border {
+    border-bottom: #4A4F55;
+    border-bottom-style: dashed;
+    border-width: 1px;
+}
+
+.table-footer {
+    border-bottom: #000;
+    border-bottom-style: solid;
+    border-width: 1px;
+}
+
+.table-footer td {
+    font-weight: bold;
+}
+
+.header-info {
+    background-color: #4A4F55;
+    color: #fff;
+    font-size: 16px;
+    padding: 6px;
+}
+
+    .header-info .general-invest {
+        float: right;
+    }
+
+.section section-start {
+    margin-top: -10px;
+}
+
+.section hr:not(.footnote-dash) {
+    margin-top: 6px !important;
+}
+
+.section-three table {
+    border: 0;
+}
+
+table {
+    border: 1px solid #f06617;
+    margin-bottom: 10px !important;
+}
+
+    table thead {
+        background-color: #4A4F55;
+    }
+
+    table th, table td {
+        border: 0 !important;
+        padding: 4px 0 4px 0 !important;
+        font-weight: normal;
+    }
+
+.section-one table, .section-two table {
+    border: 0 !important;
+}
+
+    .section-one table thead,
+    .section-two table thead {
+        background-color: #fff;
+    }
+
+    .section-one table td, .section-one table th,
+    .section-two table td, .section-two table th {
+        border: 0 !important;
+        text-align: left;
+    }
+
+    .section-one table tbody tr :nth-child(-n+2), .section-one table thead tr :nth-child(-n+2),
+    .section-two table tbody tr :nth-child(-n+2), .section-two table thead tr :nth-child(-n+2) {
+        text-align: left !important;
+    }
+
+/*    .section-one table tbody tr > td, .section-one table thead tr > th,
+    .section-two table tbody tr > td, .section-two table thead tr > th {
+        width: 30%;
+    }*/
+
+/*    .section-one table tbody tr td:nth-child(2), .section-one table thead tr th:nth-child(2),
+    .section-two table tbody tr td:nth-child(2), .section-two table thead tr th:nth-child(2) {
+        width: 50% !important;
+    }
+
+    .section-one table tbody tr td:nth-child(3), .section-one table thead tr th:nth-child(3),
+    .section-two table tbody tr td:nth-child(3), .section-two table thead tr th:nth-child(3) {
+        width: 10% !important;
+    }*/
+
+/*    .section-one table td, .section-two table td {
+        padding: 0px;
+    }*/
+
+    .section-one table hr, .section-two table hr{
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+.section-one .edge-horizon, .section-two .edge-horizon {
+    border-top: 1px dashed #000;
+}
+
+.section-three .row p {
+    word-wrap: break-word;
+}
+
+.section-three .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.section-three h4 {
+    font-size: 18px;
+    padding-bottom: 10px;
+}
+
+.heading {
+    color: #4A4F55;
+    font-size: 20px;
+    /*margin-bottom: 18px !important;*/
+}
+
+.heading h1{
+    margin-top:-20px !important;
+}
+
+hr:not(.footnote-dash) {
+    border-color: #4A4F55;
+    border-width: 2px;
+}
+
+.text-underline{
+    padding-bottom: 8px;
+}
+
+th {
+    color: white;
+}
+
+.contents-page-style {
+    font-size: 18px;
+    color: #000;
+    margin-bottom: 40px !important;
+}
+
+.holdings-footer td{
+    padding-top: 30px !important;
+}
+.holdings-footer {
+    border-bottom: 1px solid #000;
+}
+
+.footnote{
+    margin-bottom: 0;
+}
+
+.footnote .footnote-dash {
+    width: 160px;
+    margin-left: 0;
+    margin-bottom: 8px;
+    border-color: black;
+}
+
+.footnote p{
+    margin:0;
+}
+
+.noBorder {
+    border: 0px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-collapse: collapse !important;
+}

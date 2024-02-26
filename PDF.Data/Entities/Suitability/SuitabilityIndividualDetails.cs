@@ -1,0 +1,114 @@
+﻿using System;
+
+namespace PDF.Data.Entities.Suitability
+{
+    public class SuitabilityIndividualDetails
+    {
+        public long IndividualId { get; set; }
+        public int? TitleId { get; set; }
+        public string Title { get; set; }
+        public string FirstName { get; set; }
+        public string MiddleName { get; set; }
+        public string Lastname { get; set; }
+        public string PortfolioReference { get; set; }
+        public string MandateRererence { get; set; }
+        public string PortfolioInvestableProportionName { get; set; }
+        public int? EmploymentStatusTypeId { get; set; }
+        public string EmploymentStatusType { get; set; }
+        public string EmployerName { get; set; }
+        public string Position { get; set; }
+        public DateTime? PositionStartDate { get; set; }
+        public decimal? AnnualGrossIncome { get; set; }
+        public decimal? Salary { get; set; }
+        public decimal? MonthlyDisposableIncome { get; set; }
+        public int? CountryOfBirthId { get; set; }
+        public string CountryOfBirth { get; set; }
+        public int? CountryOfNationalityId { get; set; }
+        public string CountryOfNationality { get; set; }
+        public int? CountryOfSecondNationalityId { get; set; }
+        public bool IsDualNationality { get; set; }
+        public DateTime? DateOfBirth { get; set; }
+        public string Gender { get; set; }
+        public int? MaritalStatusTypeId { get; set; }
+        public string MaritalStatusType { get; set; }
+        public string Address { get; set; }
+        public string EmailAddress { get; set; }
+        public string PhoneNumber { get; set; }
+        public string PortfolioTitle { get; set; }
+        public string PortfolioTypeCode { get; set; }
+        public decimal? InitialTopUp { get; set; }
+        public DateTime? PortfolioActivationDate { get; set; }
+        public bool IsPartPension { get; set; }
+        public decimal? InitialTargetAmount { get; set; }
+        public decimal? InitialYearsToInvest { get; set; }
+        public decimal? InitialAmount { get; set; }
+        public decimal? RequestedAmount { get; set; }
+        public decimal? TransferValue { get; set; }
+        public string TargetRiskLabel { get; set; }
+        public string TargetRiskDescription { get; set; }
+        public string StrategyCode { get; set; }
+
+        public int? SourceOfFundsId { get; set; }
+        public string SourceOfFundsName { get; set; }
+        public DateTime GeneratedDateTime { get; set; }
+
+        //public int SuitabilityId { get; set; }
+        //public DateTime DateAdded { get; set; }
+        //public string Type { get; set; }
+        //public bool? IsStrategyChange { get; set; }
+        //public bool? IsRiskChange { get; set; }
+        //public bool? IsThemeChange { get; set; }
+        //public int ClientId { get; set; }
+        //public DateTime? ClientActivationDate { get; set; }
+        //public string ClientRef { get; set; }
+        //public string FirstName { get; set; }
+        //public string MiddleName { get; set; }
+        //public string LastName { get; set; }
+        //public DateTime? DOB { get; set; }
+        //public int? Age { get; set; }
+        //public string BirthCountry { get; set; }
+        //public string TaxCountry { get; set; }
+        //public string TaxId { get; set; }
+        //public string ResAddress { get; set; }
+        //public string ResAddressCountry { get; set; }
+        //public string Email { get; set; }
+        //public string PhoneNumber { get; set; }
+        //public string EmploymentStatus { get; set; }
+        //public decimal? AnnualIncome { get; set; }
+        //public decimal? MonthlyDisposableIncome { get; set; }
+        //public string IsPartPensionPlanning { get; set; }
+        //public string FinancialSource { get; set; }
+        //public string FinancialSourceProportion { get; set; }
+        //public int? PortfolioId { get; set; }
+        //public DateTime? PortfolioActivationDate { get; set; }
+        //public string AccountNumber { get; set; }
+        //public string Wrapper { get; set; }
+        //public string PortfolioType { get; set; }
+        //public int? TargetRiskRatingId { get; set; }
+        //public string TargetRiskRatingText { get; set; }
+        //public decimal? InitialAmount { get; set; }
+        //public decimal? InitialTopUp { get; set; }
+        //public int? InitialYearsToInvest { get; set; }
+        //public decimal? InitialTargetAmount { get; set; }
+        //public decimal? LowValue { get; set; }
+        //public decimal? MeanValue { get; set; }
+        //public decimal? HighValue { get; set; }
+        //public int? Question1 { get; set; }
+        //public int? Question2 { get; set; }
+        //public int? Question3 { get; set; }
+        //public int? Question4 { get; set; }
+        //public int? Question5 { get; set; }
+        //public int? Question6 { get; set; }
+        //public int? Question7 { get; set; }
+        //public int? Question8 { get; set; }
+        //public int? Question9 { get; set; }
+        //public int? Question10 { get; set; }
+        //public string PortfolioUIName { get; set; }
+        //public string PartnerName { get; set; }
+        //public decimal? CoreFee { get; set; }
+        //public decimal? SmartFee { get; set; }
+        //public decimal? SelectFee { get; set; }
+        //public bool? ISAIsTransfer { get; set; }
+        //public decimal? ISATotalTransferAmount { get; set; }
+    }
+}

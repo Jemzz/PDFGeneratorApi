@@ -1,0 +1,732 @@
+﻿@model Tiller.WXL.Models.ViewModels.SuitabilityReportViewModel
+
+@{
+    ViewBag.Title = "Suitability PDF";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    @if (Model.Mode == 2)
+    {
+        <link rel="stylesheet" href="~/css/bootstrap.min.css" crossorigin="anonymous">
+        <link rel="stylesheet" href="~/css/custom/suitability/suitability-report.css" crossorigin="anonymous">
+    }
+    else
+    {
+        <link rel="stylesheet" href="css/bootstrap.min.css" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/custom/suitability/suitability-report.css" crossorigin="anonymous">
+    }
+
+    @*    <style>
+    @Html.Raw(Model.Css)
+    </style>*@
+</head>
+<body>
+    <div class="container main-container">
+        <div class="container-fluid">
+            <div class="first-page-container">
+                <div class="sub-text">
+                    <h3>Prepared for @Model.Suitability.FirstName @Model.Suitability.Lastname</h3>
+                    <h3>by Mattioli Woods plc</h3>
+
+                    <p>Relating to the @Model.Suitability.PortfolioTitle</p>
+
+                    @{
+                        string createdText;
+
+                        if (Model.IsChangeOfRisk)
+                            createdText = $"Created on {Model.Suitability.GeneratedDateTime.ToString("dd MMMM yyyy")} ({Model.Suitability.GeneratedDateTime.ToString("h:mm tt").ToLower()})";
+                        else
+                            createdText = $"Created on {Model.Suitability.PortfolioActivationDate?.ToString("dd MMMM yyyy")} ({Model.Suitability.PortfolioActivationDate?.ToString("h:mm tt").ToLower()})";
+
+                    }
+                    <p>@createdText</p>
+                </div>
+
+                <article>
+                    <div class="maintext-heading">
+                        <h3>Suitability report</h3>
+                    </div>
+
+                    <div class="main-text">
+                        <p>
+                            This suitability report provides a full and detailed explanation of the recommendation being made based on the information you provided to us.
+                            This advice is subject to guidelines imposed by the Financial Conduct Authority (the “FCA”).
+
+                        </p>
+
+                        <p>
+                            Mattioli Woods (“MW”) is authorised and regulated by the Financial Conduct Authority.
+                            Mattioli Woods plc is a limited company registered in England and Wales at Companies House.
+                            Registered office Mattioli Woods plc, 1 New Walk Place, Leicester, LE1 6RU. Registered number 3140521.
+                        </p>
+
+                        <p>
+                            This suitability report can be seen as a useful reminder, both now and in the future, of what information you have
+                            provided to Mattioli Woods and the thinking behind our recommendation. Please ensure you read it and understand its
+                            contents. Please contact Mattioli Woods if there is anything in this suitability report about which you require further
+                            clarification.
+                        </p>
+                    </div>
+                    <section class="section-eleven">
+                        <h4>
+                            About this service
+                        </h4>
+                        <p>
+                            This service offers a highly convenient, low-cost way for you to invest your capital and income with the aim to
+                            achieve, in all market conditions, the best returns for the level of risk you are
+                            prepared to take. It does not offer a holistic assessment of your financial situation or take into
+                            consideration any existing investments you may hold.
+                            As with all investing, investments can fall as well as rise, and you may not get back the amount invested.
+                            This service does not provide tax advice and you should seek advice from a tax adviser or accountant specific to your individual circumstances.
+                        </p>
+                    </section>
+
+                    <div class="section-twelve">
+                        <h4>
+                            Benefits of this service
+                        </h4>
+                        <p>This service offers the following key benefits to you:</p>
+
+                        <ul>
+                            <li>
+                                access to Mattioli Woods' discretionary investment services,
+                                allowing you to take advantage of our range of high-quality investment funds matched to your attitude to risk
+                                (the amount of risk and reward you are willing to take when investing) and capacity for loss
+                                (the ability to absorb falls in your investments without having a detrimental effect on your standard of living)
+                            </li>
+                            <li>
+                                proactive, ongoing management of your investments – the Fund within your portfolios will be continuously monitored and, when appropriate, adjusted to make sure the allocations are aligned with the Fund’s aims and objectives
+                            </li>
+                            <li>
+                                your online account – an online account that allows you to track, in real time, and manage every aspect of your portfolios, even on your mobile phone
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div style="page-break-before: always">&nbsp;</div>
+
+                    <section class="section-one">
+                        
+                        <h4>Summary of your personal details</h4>
+                        <p>You have submitted and confirmed the following information:</p>
+
+                        <div class="first-page-details-container">
+                            <table class="first-page-details">
+                                <tbody class="text-left">
+                                    <tr>
+                                        <td class="font-weight-bold">
+                                            Name:
+                                        </td>
+                                        <td>
+                                            @Model.Suitability.FirstName @(!string.IsNullOrEmpty(Model.Suitability.MiddleName) ? Model.Suitability.MiddleName + " " : string.Empty)@Model.Suitability.Lastname
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">
+                                            Date of birth:
+                                        </td>
+                                        <td>
+                                            @(Model.Suitability.DateOfBirth?.ToString("dd MMMM yyyy"))
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">
+                                            Place of birth:
+                                        </td>
+                                        <td>
+                                            @Model.Suitability.CountryOfBirth
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">
+                                            Nationality:
+                                        </td>
+                                        <td>
+                                            @Model.Suitability.CountryOfNationality
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">
+                                            Current residential address:
+                                        </td>
+                                        <td>
+                                            @Model.Suitability.Address
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">
+                                            Email address:
+                                        </td>
+                                        <td>
+                                            @Model.Suitability.EmailAddress
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">
+                                            Primary contact number:
+                                        </td>
+                                        <td>
+                                            @string.Format("{0:#### ### ####}", Model.Suitability.PhoneNumber)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">
+                                            Marital status:
+                                        </td>
+                                        <td>
+                                            @Model.Suitability.MaritalStatusType
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">
+                                            Employment status:
+                                        </td>
+                                        <td>
+                                            @Model.Suitability.EmploymentStatusType
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <h4>&nbsp;</h4>
+
+                        <h4>Attitude to risk</h4>
+                        <p>
+                            Core to the overall investment process is the need to ensure that your attitude to risk
+                            (the amount of risk and reward you are willing to take when investing) is defined and
+                            understood by both you and Mattioli Woods, and that all investment decisions are made with this attitude in mind.
+                        </p>
+
+                        <p>
+                            Having answered the questions to our personal risk questionnaire, it is important that:
+                        </p>
+
+                        <ul>
+                            <li>
+                                you understand the types of investment risks you may be exposed to
+                            </li>
+                            <li>
+                                you reach an understanding of how much risk you are willing to accept in making your own investment decisions (known as your 'appetite for risk')
+                            </li>
+                        </ul>
+
+                        <h4>
+                            Capacity for loss
+                        </h4>
+                        <p>
+                            Mattioli Woods recommends all applicants consider their ability to absorb falls in the value of their investment and whether the loss of capital would have a materially detrimental effect on their standard of living both now and in the future.
+                            This should include the impact of your investment capital not achieving your objectives.
+                        </p>
+                        <p class="font-weight-bold">
+                            You should continuously assess your overall financial position and ability to absorb capital losses.
+                        </p>
+
+                        <h4>Risk tolerance</h4>
+
+                        <p>
+                            It is generally accepted that the returns you receive from your investments are directly connected to the amount of risk you are prepared to take. Another way to think of it is that the return from an investment is the economic reward you hope to receive for accepting a level of risk.
+                            The reward paid by a riskier investment is expected to be greater because the risk level is higher, but equally so is the possibility of the investment falling in value.
+                        </p>
+                    </section>
+                </article>
+            </div>
+            <div style="page-break-before:always">&nbsp;</div>
+            <article>
+                <section class="section-two">
+                    <h4>Your financial objectives</h4>
+                    <p>
+                        It is important to review that the investments you have chosen meet with your objectives and are in line with your personal and financial circumstances.
+                    </p>
+
+                    <p>
+                        You have opened a @Model.Suitability.PortfolioTitle (@Model.Suitability.PortfolioTypeCode) account with Mattioli Woods as follows:
+                    </p>
+
+                    <ul>
+                        <li>including your initial lump sum investment, the value of your Mattioli Woods @Model.Suitability.TargetRiskLabel portfolio is £@(Model.PortfolioData.ReportedValue.ToString("N2"))</li>
+
+                        @{
+                            var directDebitText = Model.PortfolioData.RegularInvestment != 0 ? "have" : "have not";
+                        }
+                        @{
+                            var directDebitValueText = Model.PortfolioData.RegularInvestment != 0 ? $"of £{Model.PortfolioData.RegularInvestment.ToString("N2")} by means of direct debit" : "by means of direct debit";
+                        }
+
+                        <li>you @directDebitText arranged a regular monthly contribution @directDebitValueText</li>
+                        <li>when you opened your account, you confirmed the amount being invested is affordable to commit for at least 5 years</li>
+                        <li>
+                            you confirmed you would like to invest with Mattioli Woods for a likely time horizon of @(Model.Suitability?.InitialYearsToInvest ?? 0) years
+                        </li>
+                    </ul>
+
+                    <p>
+                        We believe that this Mattioli Woods account will help achieve those objectives and is therefore suitable for your needs, providing you do not make any withdrawals* during your time horizon, based on your risk appetite, time horizon and ability to bear capital losses.
+                        Remember, there are no guarantees with investing and you may not get back what you have paid in.
+                    </p>
+
+                    <p>
+                        * You can withdraw your money at any time with no penalty fee noting that this may impact on your personal objectives.
+                        You should also consider whether any target amount you wish to achieve is realistically in line with the funds you are investing and based upon forecasted growth rates and inflation, which cannot be guaranteed. Please refer to ‘Projected returns’ below.
+                    </p>
+                </section>
+                <section class="section-three">
+                    <h4>What you have told us</h4>
+                    <p>
+                        You have submitted and confirmed the following information:
+                    </p>
+
+                    <ul>
+                        <li>you are currently @Model.Suitability.Age years old</li>
+                        <li>you are currently @(Model.Suitability.EmploymentStatusType == "Student" ? "a" : string.Empty) @Model.Suitability.EmploymentStatusType.ToLower() and have a gross annual income of £@(Model.Suitability.Salary?.ToString("N2"))</li>
+                        <li>you will be funding your investments through @Model.Suitability.SourceOfFundsName.ToLower()</li>
+
+                        @{
+                            var pensionText = Model.Suitability.IsPartPension ?
+                            "your portfolio will form part of your pension or retirement planning"
+                            : "your portfolio will not form part of your pension or retirement planning";
+                        }
+
+                        @{
+                            var pensionTextDisclaimer = Model.Suitability.IsPartPension ?
+                            "You should be aware that other products may be more suitable for saving for retirement. MWise does not consider your wider financial circumstances such as pensions and other investment and only provides simplified advice. If you are unsure whether this investment is suitable as an efficient means to save for your retirement, please seek separate financial advice or contact us."
+                            : "";
+                        }
+
+                        <li>
+                            @pensionText
+                        </li>
+                        <li>
+                            your Mattioli Woods portfolio will represent @Model.Suitability.PortfolioInvestableProportionName.ToLower() in relation to your total assets
+                        </li>
+                    </ul>
+
+                    <p>
+                        The investments that will be held in your portfolio are suitable for investors with basic investment knowledge such as risk and reward and market volatility.
+                        We have provided information to you throughout your MWise journey via prompts, guidance and our FAQs so you are fully informed and understand the risks of investing through MWise.
+                    </p>
+
+                    @{
+                        var display = Model.Suitability.IsPartPension ? "block" : "none";
+                    }
+                    <p style="display: @display">@pensionTextDisclaimer</p>
+
+                </section>
+                <div style="page-break-before:always">&nbsp;</div>
+                <section class="section-four">
+                    <h4>
+                        Your risk tolerance
+                    </h4>
+                    <p>
+                        This is your personal sensitivity to the increases and decreases of investment valuations.
+                        Your attitude to risk questionnaire result:
+                    </p>
+
+                    <ul>
+                        <li>
+                            @Model.Suitability.TargetRiskLabel -  @Model.Suitability.TargetRiskDescription
+                        </li>
+                    </ul>
+                    <p>
+                        There are four risk levels; cautious, balanced, growth and adventurous. We asked you a series of ten questions designed to test your risk tolerance and your capacity for loss; you can review your answers to the risk questionnaire in Appendix 1.
+                    </p>
+                </section>
+
+
+                <section class="section-seven">
+                    <h4>
+                        Affordability and emergency funds
+                    </h4>
+                    <p>
+                        During the journey through MWise we have asked for you to consider your current financial position taking into consideration any debt you might have including unsecured debt, such as credit cards, loans, or overdraft etc.
+                        If you do have unsecured debt, this service may not be suitable for you and you should first consider reducing your debt before investing.
+                    </p>
+                    <p>
+                        You should keep some money immediately accessible to cover any unforeseen emergency expenditure that may arise.
+                        Mattioli Woods would normally recommend that you retain an emergency fund equal to six months’ expenditure within an accessible deposit account as a minimum.
+                    </p>
+                    <p>
+                        Before investing, it may be worth considering if you have any unmet protection needs, such as income protection or life insurance.
+                        If you are unsure, you should seek financial advice as this service does not cover insurance and protection products.
+                    </p>
+                </section>
+                <section class="section-eight">
+                    <h4>
+                        Security of your investments
+                    </h4>
+                    <p>
+                        Mattioli Woods takes the security of your investments extremely seriously and has gone to great lengths to secure
+                        your investments and data.
+                    </p>
+                </section>
+                <section class="section-nine">
+                    <h4>
+                        The Custodian’s role
+                    </h4>
+                    <p>
+                        A custodian is a specialised financial institution responsible for holding customers' securities in
+                        safekeeping to minimise the risk of their theft or loss.
+                    </p>
+                    <p>
+                        We carefully selected a top tier custodian, Pershing Securities Limited (“Pershing”), to hold your assets in
+                        safekeeping in a segregated account on your behalf. Neither your money or assets will ever be
+                        commingled (mixed) with the money or assets of Mattioli Woods or Pershing,
+                        so you are protected in the unlikely event of Mattioli Woods ceasing to trade.
+                        Pershing is a subsidiary of The Bank of New York Mellon Corporation.
+                    </p>
+                </section>
+                <div style="page-break-before:always">&nbsp;</div>
+                <section class="section-ten">
+                    <h4>
+                        Financial Services Compensation Scheme ("FSCS")
+                    </h4>
+                    <p>
+                        The FSCS was set up under the Financial Services and Markets Act 2000 (“FSMA”); it exists to protect clients of authorised firms and covers deposits, insurance, and investments.
+                        The scheme can pay compensation to clients who have lost money as a result of their dealings with FCA authorised firms that are unable to pay claims against them.
+                        For full details please visit <a href="https://www.fscs.org.uk" target="_blank">www.fscs.org.uk</a>.
+                    </p>
+                </section>
+
+
+                <section class="section-fourteen">
+                    <h4>
+                        Further information and risk warnings
+                    </h4>
+                    <p>
+                        Further information regarding Mattioli Woods’ proposition can be found in the Client Agreement made available to you and details of the risk warnings associated with Mattioli Woods' products can be found on our web application. For full details please visit <a href="https://www.mattioliwoods.com/MWise#RiskWarnings" target="_blank">https://www.mattioliwoods.com/riskwarning</a>.
+                    </p>
+                </section>
+                @{
+                    var passiveActiveText = Model.Suitability.StrategyCode == "Passive" ? "passively" : "passive and actively";
+                }
+
+                <section class="section-fifteen">
+                    <h4>
+                        Your investment proposal
+                    </h4>
+                    <p>
+                        You are investing in a portfolio with a risk profile and investment objective we have determined to be suitable for you based on your answers.
+                        If your circumstances change, it is your responsibility to update the information in MWise so we can ensure your portfolio remains suitable for you.
+                        We will also ask you to review your risk profile on at least an annual basis, which you will need to complete so you remain invested in line with your attitude to risk and market volatility.
+                        The annual review is compulsory, and any new investments will not be processed until you provide up to date answers.
+                    </p>
+                    <p>
+                        The Mattioli Woods @(Model.Suitability.StrategyCode.ToLower() == "passive" ? "Passive " : "")@Model.Suitability.TargetRiskLabel Portfolio strategy you have selected enables clients to invest in a combination of the @(Model.TargetAllocation?.Where(x => x.AssetClass == "Fund")?.FirstOrDefault()?.SecurityName ?? "invested fund") and a small amount of cash.
+                        The small amount of cash will earn interest at a rate determined by the Mattioli Woods Treasury Committee from time to time. The current rate of interest at the time of this report is @((Model.PortfolioData.CashInterestRate).ToString("N2"))%, and at any time the latest rate of interest is available on <a href="https://www.mattioliwoods.com" target="_blank">www.mattioliwoods.com</a>. Mattioli Woods will also be entitled to retain interest on cash held, see below for details.
+                    </p>
+                    <p>
+                        The @(Model.TargetAllocation?.Where(x => x.AssetClass == "Fund")?.FirstOrDefault()?.SecurityName ?? "invested fund") uses a global multi-asset approach to deliver its aim of generating long-term capital growth.
+                        The managers will achieve this aim by utilising @passiveActiveText-managed solutions, while closely managing volatility. The asset allocation of the fund will be managed in line with guidance provided by the Mattioli Woods Asset Allocation Committee, ensuring diversity of assets.
+                        You can see how your portfolio is invested now and in the future through the portfolio fact sheet link in Appendix 2 of this report or through your account.
+                    </p>
+                    <p>
+                        Your attitude to risk rating is used to determine your portfolio's volatility. This strategy provides that volatility will remain aligned with your attitude to risk and capacity for loss. The use of electronic systems in making personal recommendations or decisions to trade shall not reduce the responsibility of Mattioli Woods.
+                    </p>
+                </section>
+                <div style="page-break-before:always">&nbsp;</div>
+                <section class="section-sixteen">
+                    <h4>
+                        Projected returns
+                    </h4>
+                    <p>
+                        Your risk level translates into a series of likely outcomes from your investments, which we have assessed over time. When investing, there is no guarantee of the return you will receive. However, in order to provide you with a guide of what you might expect,  we have forecasted the potential performance of your investment strategy based on the Fund’s holdings. Historically, the shorter your investment time period, the higher the likelihood of a loss.
+                    </p>
+                    <p>
+                        When you opened your account, you told us that your investment time horizon period is @Model.Suitability.InitialYearsToInvest years. At the end of this period, we predict your initial investment would be worth between
+                        £@(Model.PortfolioData.LowValueAtTerm.ToString("N2")) and £@(Model.PortfolioData.HighValueAtTerm.ToString("N2")). The most likely forecast outcome for the
+                        portfolio value would be £@(Model.PortfolioData.ExpectedValueAtTerm.ToString("N2")). These figures do not include any subsequent investments, or any additional investments you may make in the future.
+                    </p>
+                    <p>
+                        These projections are only estimates. They are based on multiple assumptions and are shown after fees and charges have been deducted.
+                        The impact of fees on your investment is shown within MWise. To show the outcome in real terms, our projections include an assumed rate of inflation at 2.5%.
+                        They are not a reliable indicator of future performance and there are no guarantees when investing. See how our projections are calculated <a href="https://mattioliwoods.com/MWise-FAQs#45" target="_blank">here</a>.
+                    </p>
+                </section>
+
+                <section class="section-eighteen">
+                    <p>
+                        Many investors feel compelled to cut their losses and cash-in their investments when a certain level of loss is reached.
+                        If cashing-in is done too hastily it can result in crystallisation of losses and many investors miss the opportunity to participate in the market recovery that historically is likely to follow.
+                        It is therefore important to understand the element of risk you are about to take with the investments you have chosen and the potential implications.
+                    </p>
+
+                    <h4>
+                        Potential for loss
+                    </h4>
+                    <p>
+                        It is important to understand that there is the potential for loss in the value of your portfolio. This is particularly relevant if your situation changes and you are forced to cash-in your investment in the early years. While higher levels of risk may provide the prospect of higher returns over the long term, the flip side is that the period when potential loss could be encountered is extended.
+                    </p>
+                </section>
+                @*<div class="break-space"></div>*@
+                <div style="page-break-after:always">&nbsp;</div>
+                <section class="section-nineteen">
+                    <h4>
+                        Target Allocation
+                    </h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Asset</th>
+                                <th>Target Asset Allocation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var target in Model.TargetAllocation.OrderByDescending(x => x.SecurityName))
+                            {
+                                <tr>
+                                    <td>@target.SecurityName</td>
+                                    <td>@((target.AllocationWeight * 100).ToString("N1"))%</td>
+                                </tr>
+                            }
+                            <tr>
+                                <td class="hide-border"></td>
+                                <td>100%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <br />
+                <section class="section-twenty-two">
+
+                    <h4>
+                        Cost of services
+                    </h4>
+                    <p>
+                        A summary of how Mattioli Woods is remunerated for the advice received and the provision of our services is
+                        detailed below:
+                    </p>
+                    <table class="cost-table">
+                        <thead>
+                            <tr>
+                                <th class="hide-border" style="background-color: white;width: 150px;"></th>
+                                <th colspan="2">Ongoing fees per annum</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="left-align-td">Management fee</td>
+                                <td class="center-align-td">
+                                    @((Model.PortfolioData.ManagementFee).ToString("N2"))%
+                                </td>
+                                <td class="center-align-td">£@((Model.PortfolioData.ManagementFeeValue).ToString("N2"))</td>
+                            </tr>
+                            <tr>
+                                <td class="left-align-td">Fund fee</td>
+                                <td class="center-align-td">
+                                    @((Model.PortfolioData.FundFee).ToString("G29"))%
+                                </td>
+                                <td class="center-align-td">£@((Model.PortfolioData.FundFeeValue).ToString("N2"))</td>
+                            </tr>
+                            <tr>
+                                <td class="left-align-td">Total fee</td>
+                                <td class="center-align-td">
+                                    @((Model.PortfolioData.TotalFees).ToString("G29"))%
+                                </td>
+                                <td class="center-align-td">£@((Model.PortfolioData.TotalFeesValue).ToString("N2"))</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br />
+                    <p>There is no initial fee when investing through MWise and all our fees are ongoing.</p>
+                    @{
+                        var basedOnText = Model.IsChangeOfRisk ? "based on the current value of your investment. It has been calculated based on 0% growth in your investment." : "based on the value of your new investment. It has been calculated based on 0% growth in your investment.";
+                    }
+                    <p>
+                        The total fee above is an estimate of the fees you will be charged in the next year @basedOnText
+                    </p>
+                    <p>
+                        The management fee is charged by Mattioli Woods for managing your portfolio and is deducted from the cash held in your account on a quarterly basis. It includes third-party charges for services such as dealing, clearing, settlement and safe custody.
+                    </p>
+                    <p>
+                        The fund fee will be deducted from your fund(s) and reflected in the performance of your investment. It is taken directly from the fund and covers costs for the structure of the Fund, our investment management charges and third-party fund manager costs.
+                    </p>
+                    <p>
+                        In addition, Mattioli Woods is entitled to retain interest on the cash balance held. As at the date of this report, the amount retained on cash only is @((Model.PortfolioData.RetainedInterestRate).ToString("N2"))%, which means that based on your investment Mattioli Woods would be receiving interest of £@((Model.PortfolioData.RetainedInterestRateValue).ToString("N2")) per annum (outside of the interest you receive). This equates to @((Model.PortfolioData.RetainedInvestmentPerAnnum).ToString("N4"))% per annum of your investment amount.
+                    </p>
+                    <p>
+                        After 12 months, we will provide you with an annualised cost disclosure statement to show the actual costs incurred for the previous 12 months.
+                    </p>
+                    <p>
+                        For more information about the fees charged to your portfolio and a full breakdown of fees payable, please click <a href="https://mattioliwoods.com/MWise#Calculator" target="_blank">here</a>. You can also read more about how we charge in our client agreement.
+                    </p>
+                    <p>
+                        You should be aware that if your circumstances change or you change your investment strategy, the underlying fees may differ as a result of switching funds.
+                    </p>
+                </section>
+            <div style="page-break-before: always">&nbsp;</div>
+
+                <section class="section-twenty-five">
+                    <h4>
+                        What happens next?
+                    </h4>
+                    <p>
+                        We hope that this Suitability Report, together with the client agreement document, provides you with sufficient information on which to base your investment decisions. If you wish to add more to your investment, please log in to MWise and click on ‘Add Money’ or ‘Transfer’, as appropriate.
+                    </p>
+
+                    <p>
+                        You can also find further information about MWise by visiting:
+                    </p>
+
+                    <ul>
+                        <li><a href="https://mwise.mattioliwoods.com" target="_blank">https://mwise.mattioliwoods.com</a></li>
+                    </ul>
+
+                    <p class="help-footnote">
+                        If there is any information with which you do not agree, or on which you require clarification, most especially our understanding of your Attitude to Risk, please let us know as soon as possible.
+                        If you require this document in an alternative format, please contact us.
+                    </p>
+
+                    <table>
+                        <tbody>
+                            <tr><td>Telephone</td><td>+44 (0) 116 240 8715</td></tr>
+                            <tr><td>Email</td><td>mwisesupport@mattioliwoods.com</td></tr>
+                            <tr>
+                                <td>Message</td>
+                                <td>
+                                    Click on the message icon located at the top right of the page once signed into your
+                                    MWise account
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                @*<div class="break-space"></div>*@
+                <div style="page-break-after:always">&nbsp;</div>
+                <section class="section-twenty-six">
+                    <h3>
+                        Appendices
+                    </h3>
+
+                    <ol>
+                        <li>
+                            Your answers to the suitability questions
+                        </li>
+
+                        <li>
+                            The Fund: aim, philosophy and risk warnings
+                        </li>
+                    </ol>
+                </section>
+
+                <div style="page-break-after:always">&nbsp;</div>
+                <section class="section-twenty-seven">
+                    <h3>
+                        Appendix 1
+                    </h3>
+
+                    <h4>
+                        Your answers to the suitability questions
+                    </h4>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Question</th>
+                                <th>Option</th>
+                                <th>Response</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var question in Model.AttitudeToRisk.OrderBy(x => x.QuestionOrder).Take(5))
+                            {
+                                <tr>
+                                    <td>Q@(question.QuestionOrder)</td>
+                                    <td>
+                                        @question.Question
+                                    </td>
+                                    <td>
+                                        @foreach (var answer in question.Answers.OrderBy(x => x.ResponseOrder))
+                                        {
+                                            @: [@answer.ResponseOrder] @answer.ResponseText<br />
+                                        }
+                                    </td>
+                                    <td>
+                                        [@question.SelectedResponse]
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div style="page-break-after:always">&nbsp;</div>
+                    <h4>
+                        Your answers to the suitability questions
+                    </h4>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Question</th>
+                                <th>Option</th>
+                                <th>Response</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var question in Model.AttitudeToRisk.OrderBy(x => x.QuestionOrder).Skip(5))
+                            {
+                                <tr>
+                                    <td>Q@(question.QuestionOrder)</td>
+                                    <td>
+                                        @question.Question.Replace("graphs below show", "graphs (not shown) below show")
+                                    </td>
+                                    <td>
+                                        @foreach (var answer in question.Answers.OrderBy(x => x.ResponseOrder))
+                                        {
+                                            @: [@answer.ResponseOrder] @(string.IsNullOrEmpty(answer.DisplayText) ? answer.ResponseText : answer.DisplayText)<br />
+                                        }
+                                    </td>
+                                    <td>
+                                        [@question.SelectedResponse]
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </section>
+                <br />
+                @*<div class="break-space"></div>*@
+                <div style="page-break-after:always">&nbsp;</div>
+                <section class="section-twenty-eight">
+                    <h3>
+                        Appendix 2
+                    </h3>
+                    <h4>
+                        @(Model.TargetAllocation?.Where(x => x.AssetClass == "Fund")?.FirstOrDefault()?.SecurityName ?? "Invested Fund") – aim, philosophy and risk warnings
+                    </h4>
+                    <div class="appendix-two">
+                        <h4>
+                            FUND <span>AIM</span>
+                        </h4>
+                        <p>The Fund aims to achieve long-term growth by the active management of a global multi-asset portfolio.</p>
+                        <h4>
+                            INVESTMENT <span>PHILOSOPHY</span>
+                        </h4>
+                        <p>This fund uses a global multi-asset approach to deliver its aim of generating long-term capital growth. The managers will achieve this aim by utilising @passiveActiveText-managed solutions, while closely managing volatility. The asset allocation of the Fund will be managed in line with guidance provided by the Mattioli Woods Asset Allocation Committee, ensuring diversity of assets. </p>
+                        <h4>
+                            RISK <span>WARNINGS</span>
+                        </h4>
+                        <ul>
+                            <li>Past performance is not a guide for future returns.</li>
+                            <li>The value of investments and the income from them can fall as well as rise, and you may not get back the amount invested.</li>
+                            <li>For funds investing globally, currency exchange rate fluctuations may have a positive or negative impact on the value of your investments.</li>
+                            <li>Changes in interest rates will affect the value of, and the interest earned from, bonds held by the Fund. When interest rates rise, the capital value of the Fund is likely to fall and vice versa.</li>
+                            <li>Investment trusts can borrow money that can then be used to make further investments. In a rising market, this ‘gearing’ can enhance returns to shareholders. However, if the market falls, losses will be multiplied.</li>
+                            <li>The Fund does not use derivatives extensively, although it may use them in an attempt to reduce risk, reduce costs and to generate additional income. Investing in derivatives carries the risk of reduced liquidity, substantial loss and increased volatility in adverse market conditions. Derivatives may expose the Fund to credit risks of counterparties, who may not meet payment obligations. The use of derivatives may result in the Fund being leveraged (where economic exposure and thus the potential for loss by the Fund exceeds the amount it has invested), and in these market conditions the effect of leverage will magnify losses.</li>
+                        </ul>
+
+                        <p class="font-weight-bold">More information can be found within the portfolio fact sheet at</p>
+                        <p class="font-weight-bold"><a href="@(Model.TargetAllocation?.Where(x => x.AssetClass == "Fund")?.FirstOrDefault()?.FactsheetHyperlink ?? "#")" target="_blank">@(System.Net.WebUtility.UrlDecode(Model.TargetAllocation?.Where(x => x.AssetClass == "Fund")?.FirstOrDefault()?.FactsheetHyperlink ?? "#"))</a></p>
+                    </div>
+                </section>
+            </article>
+        </div>
+    </div>
+</body>
+</html>

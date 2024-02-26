@@ -1,0 +1,202 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="logs\**" />
+    <Compile Remove="Views\ReportEngine\PartialView\**" />
+    <Content Remove="logs\**" />
+    <Content Remove="Views\ReportEngine\PartialView\**" />
+    <EmbeddedResource Remove="logs\**" />
+    <EmbeddedResource Remove="Views\ReportEngine\PartialView\**" />
+    <None Remove="logs\**" />
+    <None Remove="Views\ReportEngine\PartialView\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\ReportEngine\CostDisclosureReport.cshtml" />
+    <Content Remove="Views\ReportEngine\FirstPage\ClientReportFirstPage.cshtml" />
+    <Content Remove="Views\ReportEngine\FirstPage\CostDisclosureFirstPage.cshtml" />
+    <Content Remove="Views\ReportEngine\FirstPage\EidVFirstPage.cshtml" />
+    <Content Remove="Views\ReportEngine\FirstPage\ValuationFirstPage.cshtml" />
+    <Content Remove="Views\ReportEngine\ISATransferReport.cshtml" />
+    <Content Remove="Views\ReportEngine\JISATransferCTFReport.cshtml" />
+    <Content Remove="Views\ReportEngine\JISATransferReport.cshtml" />
+    <Content Remove="Views\ReportEngine\ParticipantClientReport.cshtml" />
+    <Content Remove="Views\ReportEngine\SuitabilityReport.cshtml" />
+    <Content Remove="Views\ReportEngine\SuitabilitySubTypeReport.cshtml" />
+    <Content Remove="Views\ReportEngine\ValuationReport.cshtml" />
+    <Content Remove="wwwroot\css\custom\cost-disclosure\cost-disclosure-firstpage.css" />
+    <Content Remove="wwwroot\css\custom\cost-disclosure\cost-disclosure.css" />
+    <Content Remove="wwwroot\css\custom\suitability\suitability-report.css" />
+    <Content Remove="wwwroot\css\font\Inter-Regular.ttf" />
+    <Content Remove="wwwroot\css\font\MuseoSans-100.otf" />
+    <Content Remove="wwwroot\css\font\MuseoSans-300.otf" />
+    <Content Remove="wwwroot\css\font\MuseoSans_500.otf" />
+    <Content Remove="wwwroot\css\font\MuseoSans_700.otf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Content\font\Inter-Regular.ttf" />
+    <None Remove="Content\font\MuseoSans-100.otf" />
+    <None Remove="Content\font\MuseoSans-300.otf" />
+    <None Remove="Content\font\MuseoSans_500.otf" />
+    <None Remove="Content\font\MuseoSans_700.otf" />
+    <None Remove="Views\ReportEngine\grcjcmx3.w25~" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Content\font\Inter-Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\font\MuseoSans-100.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\font\MuseoSans-300.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\font\MuseoSans_500.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\font\MuseoSans_700.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="Magick.NET-Q8-AnyCPU" Version="12.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.14" />
+    <PackageReference Include="NLog" Version="5.1.2" />
+    <PackageReference Include="NLog.Targets.Syslog" Version="7.0.0" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="5.2.2" />
+    <PackageReference Include="SqlAlias" Version="2.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Content\Brand\MWise-logoRGB-180.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Brand\MWise-logoRGB.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Brand\MWise-logoRGB.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Brand\MWLogo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Brand\MWLogo2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Brand\MWorksLogo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Brand\Pershing.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Brand\simplified-investing-180.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Brand\simplified-investing.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Brand\simplified-investing.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Brand\tiller-logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Brand\ValuationInfo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\font\Calibri_Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\isa-transfer-report.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\suitability-report.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\custom\cost-disclosure\cost-disclosure-firstpage.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\css\custom\cost-disclosure\cost-disclosure.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\css\custom\suitability\suitability-report.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\css\custom\valuation\valuation-firstpage.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\css\custom\valuation\valuation.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\css\custom\verify\verify-cover.css" />
+    <None Include="wwwroot\css\custom\verify\verify-report.css" />
+    <None Include="wwwroot\css\font\Inter-Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\css\font\MuseoSans-100.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\css\font\MuseoSans-300.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\css\font\MuseoSans_500.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\css\font\MuseoSans_700.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PDF.Core\PDF.Core.csproj" />
+    <ProjectReference Include="..\PDF.Implementations\PDF.Implementations.csproj" />
+    <ProjectReference Include="..\PDF.Services\PDF.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="testdata.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\css\bootstrap.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\css\font-awesome\css\font-awesome.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\css\font-awesome\fonts\fontawesome-webfont.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\css\font-awesome\fonts\fontawesome-webfont.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\css\font-awesome\fonts\fontawesome-webfont.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\css\font-awesome\fonts\fontawesome-webfont.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\css\font-awesome\fonts\fontawesome-webfont.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\css\font-awesome\fonts\FontAwesome.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\verify-logo-white.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+
+</Project>

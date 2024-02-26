@@ -1,0 +1,1910 @@
+﻿@using Tiller.WXL.PDFGeneration
+@model Tiller.WXL.Models.ViewModels.PrimaryParticipantSummaryViewModel
+
+@{
+    ViewBag.Title = "Client Report - Participant PDF";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Test</title>
+    @if (Model.Mode == 2)
+    {
+        <link rel="stylesheet" href="~/css/bootstrap.min.css" crossorigin="anonymous">
+        <link rel="stylesheet" href="~/css/font-awesome/css/font-awesome.min.css" crossorigin="anonymous">
+        <link rel="stylesheet" href="~/css/custom/client-report/client-report.css" crossorigin="anonymous">
+    }
+    else
+    {
+        <link rel="stylesheet" href="css/bootstrap.min.css" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/custom/client-report/client-report.css" crossorigin="anonymous">
+    }
+</head>
+
+<body>
+    <div>
+        <div class="main-container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="content-section">
+                        <div class="main-heading">
+                            <h1>Contents</h1>
+                        </div>
+
+                        <table class="table-of-content">
+                            <colgroup>
+                                <col style="width: 40%">
+                                <col style="width: 50%">
+                                <col style="width: 10%">
+                            </colgroup>
+                            <tbody>
+                                @{
+                                    var c = 1;
+                                }
+                                <tr>
+                                    <td>@c</td>
+                                    <td>
+                                        <a href="#TOC_Target0" id="TOC_Title0" class="toc contents-page-style"><h4>Personal details</h4></a>
+                                    </td>
+                                    <td id="TOC_Page_Number0" class="toc"></td>
+                                </tr>
+                                <tr>
+                                    @{
+                                        c += 1;
+                                    }
+                                    <td>@c</td>
+                                    <td>
+                                        <a href="#TOC_Target1" id="TOC_Title1" class="toc contents-page-style"><h4>Tax and employment</h4></a>
+                                    </td>
+                                    <td id="TOC_Page_Number1" class="toc"></td>
+                                </tr>
+                                @if (Model.IndividualDetails.ParticipantMainDetail.IsMainApplicant)
+                                {
+                                    <tr>
+                                        @{
+                                            c += 1;
+                                        }
+                                        <td>@c</td>
+                                        <td>
+                                            <a href="#TOC_Target2" id="TOC_Title2" class="toc contents-page-style"><h4>Third parties</h4></a>
+                                        </td>
+                                        <td id="TOC_Page_Number2" class="toc"></td>
+                                    </tr>
+                                    <tr>
+                                        @{
+                                            c += 1;
+                                        }
+                                        <td>@c</td>
+                                        <td>
+                                            <a href="#TOC_Target3" id="TOC_Title3" class="toc contents-page-style"><h4>Income</h4></a>
+                                        </td>
+                                        <td id="TOC_Page_Number3" class="toc"></td>
+                                    </tr>
+                                    <tr>
+                                        @{
+                                            c += 1;
+                                        }
+                                        <td>@c</td>
+                                        <td>
+                                            <a href="#TOC_Target4" id="TOC_Title4" class="toc contents-page-style"><h4>Assets and liabilities</h4></a>
+                                        </td>
+                                        <td id="TOC_Page_Number4" class="toc"></td>
+                                    </tr>
+                                    <tr>
+                                        @{
+                                            c += 1;
+                                        }
+                                        <td>@c</td>
+                                        <td>
+                                            <a href="#TOC_Target5" id="TOC_Title5" class="toc contents-page-style"><h4>Financial dependants</h4></a>
+                                        </td>
+                                        <td id="TOC_Page_Number5" class="toc"></td>
+                                    </tr>
+                                    <tr>
+                                        @{
+                                            c += 1;
+                                        }
+                                        <td>@c</td>
+                                        <td>
+                                            <a href="#TOC_Target6" id="TOC_Title6" class="toc contents-page-style"><h4>Source of funds</h4></a>
+                                        </td>
+                                        <td id="TOC_Page_Number6" class="toc"></td>
+                                    </tr>
+                                    <tr>
+                                        @{
+                                            c += 1;
+                                        }
+                                        <td>@c</td>
+                                        <td>
+                                            <a href="#TOC_Target7" id="TOC_Title7" class="toc contents-page-style"><h4>Account information</h4></a>
+                                        </td>
+                                        <td id="TOC_Page_Number7" class="toc"></td>
+                                    </tr>
+                                }
+                                <tr>
+                                    @{
+                                        c += 1;
+                                    }
+                                    <td>@c</td>
+                                    <td>
+                                        <a href="#TOC_Target8" id="TOC_Title8" class="toc contents-page-style"><h4>Further information</h4></a>
+                                    </td>
+                                    <td id="TOC_Page_Number8" class="toc"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div style="page-break-before:always">&nbsp;</div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="info-section">
+                        <table>
+                            <colgroup>
+                                <col style="width: 7%">
+                                <col style="width: 43%">
+                                <col style="width: 50%">
+                            </colgroup>
+                            <tbody class="text-left">
+                                @{
+                                    var sec = 1;
+                                    var i = sec + 0.1;
+                                }
+                                <tr class="main-heading toc" id="TOC_Target0">
+                                    <td>
+                                        <h1>@sec</h1>
+                                    </td>
+                                    <td colspan="2">
+                                        <h1>PERSONAL DETAILS</h1>
+                                    </td>
+                                </tr>
+                                <tr class="info">
+                                    <td>@i</td>
+                                    <td>
+                                        <h4 class="mb-0">Personal details</h4>
+                                        <p class="small-details mb-2"><small>The client submitted the following personal details:</small></p>
+                                    </td>
+                                    <td>
+                                        <table>
+                                            <colgroup>
+                                                <col style="width: 50%">
+                                                <col style="width: 50%">
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="mb-0 bold">Title:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.Title</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">First name:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.FirstName</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">Middle name(s):</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.MiddleName.ReplaceNullWithHyphen()</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">Surname:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.Surname</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">Previous/maiden name:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.MaidenName</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">Known as:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.KnownByName</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">Date of birth:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.DateOfBirth</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">Sex:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.Gender</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">Marital status:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.MaritalStatus</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr class="info">
+                                    @{
+                                        i = i.IncrementSubSection();
+                                    }
+                                    <td>@i</td>
+                                    <td>
+                                        @if (Model.IndividualDetails.ParticipantMainDetail.IsMainApplicant)
+                                        {
+                                            <h4 class="mb-0">Other applicants details</h4>
+                                            <p class="small-details mb-2"><small>This following individual is the primary applicant for this application:</small></p>
+                                        }
+                                        else
+                                        {
+                                            <h4 class="mb-0">Joint applicants details</h4>
+                                            <p class="small-details mb-2"><small>The client submitted the following details for the spouse/partner as a joint applicant:</small></p>
+                                        }
+                                    </td>
+                                    <td>
+                                        <table>
+                                            <colgroup>
+                                                <col style="width: 50%">
+                                                <col style="width: 50%">
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="mb-0 bold">Title:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.JointTitle.ReplaceNullWithHyphen()</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">First name:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.JointFirstName.ReplaceNullWithHyphen()</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">Middle name(s):</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.JointMiddleName.ReplaceNullWithHyphen()</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">Surname:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.JointSurname.ReplaceNullWithHyphen()</td>
+                                                </tr>
+                                                @if (Model.IndividualDetails.ParticipantMainDetail.IsMainApplicant)
+                                                {
+                                                    <tr>
+                                                        <td class="mb-0 bold">Email:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.JointEmail.ReplaceNullWithHyphen()</td>
+                                                    </tr>
+                                                }
+                                                else
+                                                {
+                                                    <tr>
+                                                        <td class="mb-0 bold">Previous/maiden name:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.JointMaidenName.ReplaceNullWithHyphen()</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="mb-0 bold">Known as:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.JointKnownByName.ReplaceNullWithHyphen()</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="mb-0 bold">Date of birth:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.JointDateOfBirth.ReplaceNullWithHyphen()</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="mb-0 bold">Sex:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.JointGender.ReplaceNullWithHyphen()</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="mb-0 bold">Marital status:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.JointMaritalStatus.ReplaceNullWithHyphen()</td>
+                                                    </tr>
+                                                }
+                                                <tr>
+                                                    <td class="mb-0 bold">Relationship:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.JointRelationship.ReplaceNullWithHyphen()</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr class="info">
+                                    @{
+                                        i = i.IncrementSubSection();
+                                    }
+                                    <td>@i</td>
+                                    <td>
+                                        <h4 class="mb-0">Nationality</h4>
+                                        <p class="small-details mb-2"><small>The client submitted the following nationality details:</small></p>
+                                    </td>
+                                    <td>
+                                        <table>
+                                            <colgroup>
+                                                <col style="width: 50%">
+                                                <col style="width: 50%">
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="mb-0 bold">Place of Birth:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.PlaceOfBirth.ReplaceNullWithHyphen()</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">Town of birth:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.TownOfBirth.ReplaceNullWithHyphen()</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">Country of domicile:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.CountryOfDomicile.ReplaceNullWithHyphen()</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">Nationality:</td>
+                                                    <td class="mb-0">@string.Join(",", Model.IndividualDetails.ParticipantMainDetail.Nationality, Model.IndividualDetails.ParticipantMainDetail.SecondNationality).TrimEnd(',')</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr class="info">
+                                    @{
+                                        i = i.IncrementSubSection();
+                                    }
+                                    <td>@i</td>
+                                    <td>
+                                        <h4 class="mb-0">Current residential address</h4>
+                                        <p class="small-details mb-2"><small>The client submitted the following Current residential address details:</small></p>
+                                    </td>
+                                    <td>
+                                        <table>
+                                            <colgroup>
+                                                <col style="width: 50%">
+                                                <col style="width: 50%">
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="mb-0 bold">Flat / apartment sub-building:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail?.ResidentialSubBuilding.ReplaceNullWithHyphen()</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">Building number:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail?.ResidentialBuildingNumber.ReplaceNullWithHyphen()</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">Building name:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail?.ResidentialBuildingName.ReplaceNullWithHyphen()</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">Road / street:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail?.ResidentialStreet.ReplaceNullWithHyphen()</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">Town:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail?.ResidentialCity.ReplaceNullWithHyphen()</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">State / Province:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail?.ResidentialProvinceName.ReplaceNullWithHyphen()</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">State / Province Code:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail?.ResidentialProvinceCode.ReplaceNullWithHyphen()</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">Post / zip code:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail?.ResidentialAddressPostCode.ReplaceNullWithHyphen()</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">District:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail?.ResidentialDistrict.ReplaceNullWithHyphen()</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">Country:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail?.ResidentialCountry.ReplaceNullWithHyphen()</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">From:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail?.ResidentialAddressFrom</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                                @if (Model.IndividualDetails.SummaryPreviousAddresses.Any())
+                                {
+                                    int a = 1;
+                                    foreach (var address in Model.IndividualDetails.SummaryPreviousAddresses)
+                                    {
+                                        <tr class="info">
+                                            @{
+                                                i = i.IncrementSubSection();
+                                            }
+                                            <td>@i</td>
+                                            <td>
+                                                <h4 class="mb-0">Previous address @a</h4>
+                                                <p class="small-details mb-2"><small>The client submitted the following Previous residential address details:</small></p>
+                                            </td>
+                                            <td>
+                                                <table>
+                                                    <colgroup>
+                                                        <col style="width: 50%">
+                                                        <col style="width: 50%">
+                                                    </colgroup>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="mb-0 bold">Flat / apartment sub-building:</td>
+                                                            <td class="mb-0">@address.ResidentialSubBuilding.ReplaceNullWithHyphen()</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="mb-0 bold">Building number:</td>
+                                                            <td class="mb-0">@address.ResidentialBuildingNumber.ReplaceNullWithHyphen()</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="mb-0 bold">Building name:</td>
+                                                            <td class="mb-0">@address.ResidentialBuildingName.ReplaceNullWithHyphen()</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="mb-0 bold">Road / street:</td>
+                                                            <td class="mb-0">@address.ResidentialStreet.ReplaceNullWithHyphen()</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="mb-0 bold">Town:</td>
+                                                            <td class="mb-0">@address.ResidentialCity.ReplaceNullWithHyphen()</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="mb-0 bold">State / Province:</td>
+                                                            <td class="mb-0">@address.ResidentialProvinceName.ReplaceNullWithHyphen()</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="mb-0 bold">State / Province Code:</td>
+                                                            <td class="mb-0">@address.ResidentialProvinceCode.ReplaceNullWithHyphen()</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="mb-0 bold">Post / zip code:</td>
+                                                            <td class="mb-0">@address.ResidentialAddressPostCode.ReplaceNullWithHyphen()</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="mb-0 bold">District:</td>
+                                                            <td class="mb-0">@address.ResidentialDistrict.ReplaceNullWithHyphen()</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="mb-0 bold">Country:</td>
+                                                            <td class="mb-0">@address.ResidentialCountry.ReplaceNullWithHyphen()</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="mb-0 bold">From:</td>
+                                                            <td class="mb-0">@address.ResidentialAddressFrom</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        a++;
+                                    }
+                                }
+
+                                <tr class="info">
+                                    @{
+                                        i = i.IncrementSubSection();
+                                    }
+                                    <td>@i</td>
+                                    <td>
+                                        <h4 class="mb-0">Postal address</h4>
+                                        <p class="small-details mb-2"><small>The client submitted the following Postal address details:</small></p>
+                                    </td>
+                                    <td>
+                                        <table>
+                                            <colgroup>
+                                                <col style="width: 50%">
+                                                <col style="width: 50%">
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="mb-0 bold">Flat / apartment sub-building:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail?.PostalSubBuilding.ReplaceNullWithHyphen()</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">Building number:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail?.PostalBuildingNumber.ReplaceNullWithHyphen()</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">Building name:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail?.PostalBuildingName.ReplaceNullWithHyphen()</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">Road / street:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail?.PostalStreet.ReplaceNullWithHyphen()</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">Town:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail?.PostalCity.ReplaceNullWithHyphen()</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">State / Province:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail?.PostalProvinceName.ReplaceNullWithHyphen()</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">State / Province Code:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail?.PostalProvinceCode.ReplaceNullWithHyphen()</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">Post / zip code:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail?.PostalAddressPostCode.ReplaceNullWithHyphen()</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">District:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail?.PostalDistrict.ReplaceNullWithHyphen()</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">Country:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail?.PostalCountry.ReplaceNullWithHyphen()</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr class="info">
+                                    @{
+                                        i = i.IncrementSubSection();
+                                    }
+                                    <td>@i</td>
+                                    <td>
+                                        <h4 class="mb-0">Contact details</h4>
+                                        <p class="small-details mb-2"><small>The client submitted the following contact details:</small></p>
+                                    </td>
+                                    <td>
+                                        <table>
+                                            <colgroup>
+                                                <col style="width: 50%">
+                                                <col style="width: 50%">
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="mb-0 bold">Mobile:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.MobilePhone.ReplaceNullWithHyphen()</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">Home:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.HomePhone.ReplaceNullWithHyphen()</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">Business:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.BusinessPhone.ReplaceNullWithHyphen()</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">Email:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.Email.ReplaceNullWithHyphen()</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>
+            <div style="page-break-before: always">&nbsp;</div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="info-section">
+                        <table>
+                            <colgroup>
+                                <col style="width: 7%">
+                                <col style="width: 43%">
+                                <col style="width: 50%">
+                            </colgroup>
+                            <tbody class="text-left">
+                                <tr class="main-heading toc" id="TOC_Target1">
+                                    @{
+                                        sec += 1;
+                                        i = sec + 0.1;
+                                    }
+                                    <td>
+                                        <h1>@sec</h1>
+                                    </td>
+                                    <td colspan="2" class="heading">
+                                        <h1>TAX AND EMPLOYMENT</h1>
+                                    </td>
+                                </tr>
+                                <tr class="info">
+                                    <td>@i</td>
+                                    <td>
+                                        <h4 class="mb-0">Tax residency</h4>
+                                        <p class="small-details mb-2"><small>The client has confirmed the following tax residency details.</small></p>
+                                    </td>
+                                    <td>
+                                        <table>
+                                            <colgroup>
+                                                <col style="width: 50%">
+                                                <col style="width: 50%">
+                                            </colgroup>
+                                            <thead>
+                                                <tr style="text-decoration: underline;">
+                                                    <th>Country</th>
+                                                    <th>Social security/NI number</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                @{
+                                                    foreach (var residency in Model.IndividualDetails.SummaryTaxDetails)
+                                                    {
+                                                        <tr>
+                                                            <td class="mb-0 bold">@residency.TaxResidencyCountry</td>
+                                                            <td class="mb-0">@residency.TaxNumber</td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr class="info">
+                                    @{
+                                        i = i.IncrementSubSection();
+                                    }
+                                    <td>@i</td>
+                                    <td>
+                                        <h4 class="mb-0">Employment</h4>
+                                        <p class="small-details mb-2"><small>The client submitted the following employment details:</small></p>
+                                    </td>
+                                    <td>
+                                        <table>
+                                            <colgroup>
+                                                <col style="width: 50%">
+                                                <col style="width: 50%">
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="mb-0 bold">Status:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.EmploymentStatus</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">Occupation/position:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.EmploymentPosition</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">Start date:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.EmploymentStartDate</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">Approx salary:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.PersonalSalary</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0 bold">Overseas employment:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.EmploymentOverseas</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                                @if (Model.IndividualDetails.ParticipantMainDetail.IsMainApplicant && @Model.IndividualDetails.ParticipantMainDetail.EmploymentOverseas == "Yes")
+                                {
+                                    <tr class="info">
+                                        @{
+                                            i = i.IncrementSubSection();
+                                        }
+                                        <td>@i</td>
+                                        <td>
+                                            <h4 class="mb-0">Overseas employment</h4>
+                                            <p class="small-details mb-2"><small>These details were submitted because the client has confirmed they have overseas employment.</small></p>
+                                        </td>
+                                        <td>
+                                            <table>
+                                                <colgroup>
+                                                    <col style="width: 50%">
+                                                    <col style="width: 50%">
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="mb-0 bold">years abroad:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.YearsWorkedAbroad</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="mb-0 bold">Expected duration:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.YearsWorkedDuration</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="mb-0 bold">Return country:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.YearsWorkedReturnCountry</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                }
+                                @{
+                                    var directorshipClassName = Model.IndividualDetails.ParticipantMainDetail.DirectorOfPublicQuotedCompany == "Yes" || 1 == 1 ? "info-with-comments" : "info";
+                                }
+                                <tr class="@directorshipClassName">
+                                    @{
+                                        i = i.IncrementSubSection();
+                                    }
+                                    <td>@i</td>
+                                    <td>
+                                        <h4 class="mb-0">Directorships</h4>
+                                        <p class="small-details mb-2"><small>The client has confirmed they are a director of a public quoted company.</small></p>
+                                    </td>
+                                    <td>
+                                        <table>
+                                            <colgroup>
+                                                <col style="width: 50%">
+                                                <col style="width: 50%">
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="mb-0 bold">Director of public quoted company:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.DirectorOfPublicQuotedCompany</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                @if (Model.IndividualDetails.ParticipantMainDetail.DirectorOfPublicQuotedCompany == "Yes" || 1 == 1)
+                                {
+                                    <tr>
+                                        <td colspan="3" class="comment-section">
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th class="mb-0 bold">Further detail:</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="commentBox">
+                                                            @Model.IndividualDetails.ParticipantMainDetail.DirectorshipDetails
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                }
+
+                                @{
+                                    var className = Model.IndividualDetails.ParticipantMainDetail.IsPEP == "Yes" || 1 == 1 ? "info-with-comments" : "info";
+                                }
+                                <tr class="@className">
+                                    @{
+                                        i = i.IncrementSubSection();
+                                    }
+                                    <td>@i</td>
+                                    <td>
+                                        <h4 class="mb-0">Politically exposure</h4>
+                                        <p class="small-details mb-2"><small>The client has confirmed they are a politically exposed person.</small></p>
+                                    </td>
+                                    <td>
+                                        <table>
+                                            <colgroup>
+                                                <col style="width: 50%">
+                                                <col style="width: 50%">
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="mb-0 bold">Are you a politically exposed person:</td>
+                                                    <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.IsPEP</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                @if (Model.IndividualDetails.ParticipantMainDetail.IsPEP == "Yes" || 1 == 1)
+                                {
+                                    <tr>
+                                        <td colspan="3" class="comment-section">
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="mb-0 bold">Further detail:</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="commentBox">
+                                                            @Model.IndividualDetails.ParticipantMainDetail.PepDetails
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>
+            <div style="page-break-before:always">&nbsp;</div>
+            @if (Model.IndividualDetails.ParticipantMainDetail.IsMainApplicant)
+            {
+                <div class="row">
+                    <div class="col-lg-12">
+                        <section class="info-section">
+                            <table>
+                                <colgroup>
+                                    <col style="width: 7%">
+                                    <col style="width: 43%">
+                                    <col style="width: 50%">
+                                </colgroup>
+                                <tbody class="text-left">
+                                    <tr class="main-heading toc" id="TOC_Target2">
+                                        @{
+                                            sec += 1;
+                                            i = sec + 0.1;
+                                        }
+                                        <td>
+                                            <h1>@sec</h1>
+                                        </td>
+                                        <td colspan="2" class="heading">
+                                            <h1>THIRD PARTIES</h1>
+                                        </td>
+                                    </tr>
+                                    @if (Model.IndividualDetails.ParticipantMainDetail.HasInterestedParties)
+                                    {
+                                        foreach (var party in Model.IndividualDetails.SummaryInterestedParties)
+                                        {
+                                            var onlineAccess = @party.OnlineAccess == "Yes" ? "Authorized" : "Not authorized";
+                                            var acceptInstruction = @party.AuthorizationToAcceptInstruction == "Yes" ? "Authorized" : "Not authorized";
+
+                                            <tr class="info">
+                                                @{
+                                                    i = i.IncrementSubSection();
+                                                }
+                                                <td>@i</td>
+                                                <td>
+                                                    <table>
+                                                        <colgroup>
+                                                            <col style="width: 50%">
+                                                            <col style="width: 50%">
+                                                        </colgroup>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td colspan="2">
+                                                                    <h4 class="mb-0">@party.Relationship</h4>
+                                                                    <p class="small-details mb-2"><small>The following individual is the @party.Relationship for the client:</small></p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="mb-0 bold">Access:</td>
+                                                                <td class="mb-0">@onlineAccess to accept instructions. @acceptInstruction to accept instructions.</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="mb-0 bold" colspan="2">Communications</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="2">
+                                                                    <table class="subtable">
+                                                                        <colgroup>
+                                                                            <col style="width: 50%">
+                                                                            <col style="width: 50%">
+                                                                        </colgroup>
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Type</th>
+                                                                                <th>Delivery</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="mb-0 bold">Online access:</td>
+                                                                                <td class="mb-0">@party.OnlineAccess</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="mb-0 bold">Quarterly statements:</td>
+                                                                                <td class="mb-0">@party.QuarterlyStatements</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="mb-0 bold">Quarterly valuations:</td>
+                                                                                <td class="mb-0">@party.QuarterlyValuations</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="mb-0 bold">Y/E tax statements:</td>
+                                                                                <td class="mb-0">@party.YearEndTaxStatement</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="mb-0 bold">Contract notes:</td>
+                                                                                <td class="mb-0">@party.ContractNotes</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                                <td>
+                                                    <table>
+                                                        <colgroup>
+                                                            <col style="width: 50%">
+                                                            <col style="width: 50%">
+                                                        </colgroup>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="mb-0 bold">Company:</td>
+                                                                <td class="mb-0">@party.CompanyName</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="mb-0 bold">Email:</td>
+                                                                <td class="mb-0">@party.Email</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="mb-0 bold">Full name:</td>
+                                                                <td class="mb-0">@party.FullName</td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td class="mb-0 bold">Address:</td>
+                                                                <td class="mb-0">@party.ResidentialAddress</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="mb-0 bold">Postcode:</td>
+                                                                <td class="mb-0">@party.ResidentialAddressPostCode</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="mb-0 bold">Phone type:</td>
+                                                                <td class="mb-0">@party.PhoneType</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="mb-0 bold">Number:</td>
+                                                                <td class="mb-0">@party.PhoneCountryCode @party.PhoneNumber</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </section>
+                    </div>
+                </div>
+                <div style="page-break-before: always">&nbsp;</div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <section class="info-section">
+                            <table>
+                                <colgroup>
+                                    <col style="width: 7%">
+                                    <col style="width: 43%">
+                                    <col style="width: 50%">
+                                </colgroup>
+                                <tbody class="text-left">
+                                    <tr class="main-heading toc" id="TOC_Target3">
+                                        @{
+                                            sec += 1;
+                                            i = sec + 0.1;
+                                        }
+                                        <td>
+                                            <h1>@sec</h1>
+                                        </td>
+                                        <td colspan="2" class="heading">
+                                            <h1>INCOME</h1>
+                                        </td>
+                                    </tr>
+                                    <tr class="info-with-comments">
+                                        <td>@i</td>
+                                        <td>
+                                            <h4 class="mb-0">Household income</h4>
+                                            <p class="small-details mb-2"><small>The client has confirmed the following approximate household income.</small></p>
+                                        </td>
+                                        <td>
+                                            <table>
+                                                <colgroup>
+                                                    <col style="width: 50%">
+                                                    <col style="width: 50%">
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="mb-0 bold">Self:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.TotalIncomeSelf</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="mb-0 bold">Partner/spouse:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.TotalIncomePartner</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="mb-0 bold">Joint:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.TotalIncomeJoint</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="mb-0 bold">Total:</td>
+                                                        <td class="mb-0 bold">@Model.IndividualDetails.ParticipantMainDetail.TotalIncomeCombined</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold" colspan="3">HouseHold Income</td>
+                                    </tr>
+                                    <tr class="info">
+                                        <td colspan="3">
+                                            <table class="subtable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Type</th>
+                                                        <th>Self</th>
+                                                        <th>Spouse/partner</th>
+                                                        <th>Joint</th>
+                                                        <th>Total</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="bold">Salary/earned:</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.PersonalSalary</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.PartnerSalary</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.JointSalary</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.TotalSalary</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="bold">Savings:</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.PersonalSavingsIncome</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.PartnerSavingsIncome</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.JointSavingsIncome</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.TotalSavings</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="bold">Investments:</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.PersonalInvestmentIncome</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.PartnerInvestmentIncome</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.JointInvestmentIncome</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.TotalInvestments</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="bold">Pensions:</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.PersonalPensionIncome</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.PartnerPensionIncome</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.JointPensionIncome</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.TotalPensions</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="bold">Property:</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.PersonalPropertyIncome</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.PartnerPropertyIncome</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.JointPropertyIncome</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.TotalProperty</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="bold">Other:</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.PersonalOtherSources</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.PartnerOtherSources</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.JointOtherSources</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.TotalOtherSources</td>
+                                                    </tr>
+                                                    <tr class="dotted-border-top">
+                                                        <td class="bold">Total:</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.TotalIncomeSelf</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.TotalIncomePartner</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.TotalIncomeJoint</td>
+                                                        <td class="bold">@Model.IndividualDetails.ParticipantMainDetail.TotalIncomeCombined</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+
+                                    @* @{
+                                var investmentClassName = Model.IndividualDetails.ParticipantMainDetail.TaxEmployment.IsDirectorship == true ? "info-with-comments" : "info";
+                                }; *@
+                                    <tr class="info-with-comments">
+                                        @{
+                                            i = i.IncrementSubSection();
+                                        }
+                                        <td>@i</td>
+                                        <td>
+                                            <h4 class="mb-0">Investment income</h4>
+                                            <p class="small-details mb-2"><small>The client has confirmed how they would like their McInRoy & Wood investment income treated.</small></p>
+                                        </td>
+                                        <td>
+                                            <table>
+                                                <colgroup>
+                                                    <col style="width: 50%">
+                                                    <col style="width: 50%">
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="mb-0 bold">Taxable income:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.InvestmentIncomeTaxableIncome</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="mb-0 bold">Annual spending requirement:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.InvestmentIncomeAnnualSpendingRequired</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    @if (1 == 1) //annual spending yes
+                                    {
+                                        <tr>
+                                            <td colspan="3" class="comment-section">
+                                                <table>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="mb-0 bold">Annual spending requirement detail:</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="commentBox">
+                                                                @Model.IndividualDetails.ParticipantMainDetail.OtherInvestmentRequirements
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </section>
+                    </div>
+                </div>
+                <div style="page-break-before: always">&nbsp;</div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <section class="info-section">
+                            <table>
+                                <colgroup>
+                                    <col style="width: 7%">
+                                    <col style="width: 43%">
+                                    <col style="width: 50%">
+                                </colgroup>
+                                <tbody class="text-left">
+                                    <tr class="main-heading toc" id="TOC_Target4">
+                                        @{
+                                            sec += 1;
+                                            i = sec + 0.1;
+                                        }
+                                        <td>
+                                            <h1>@sec</h1>
+                                        </td>
+                                        <td colspan="2" class="heading">
+                                            <h1>ASSETS AND LIABILITIES</h1>
+                                        </td>
+                                    </tr>
+                                    <tr class="info-with-comments">
+                                        <td>@i</td>
+                                        <td>
+                                            <h4 class="mb-0">Assets</h4>
+                                            <p class="small-details mb-2"><small>The client has confirmed the following approximate household assets.</small></p>
+                                        </td>
+                                        <td>
+                                            <table>
+                                                <colgroup>
+                                                    <col style="width: 50%">
+                                                    <col style="width: 50%">
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="mb-0 bold">Self:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.TotalAssetsSelf</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="mb-0 bold">Partner/spouse:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.TotalAssetsPartner</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="mb-0 bold">Joint:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.TotalAssetsJoint</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="mb-0 bold">Total:</td>
+                                                        <td class="mb-0 bold">@Model.IndividualDetails.ParticipantMainDetail.TotalAssetsCombined</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold" colspan="3">HouseHold assets</td>
+                                    </tr>
+                                    <tr class="info">
+                                        <td colspan="3">
+                                            <table class="subtable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Type</th>
+                                                        <th>Self</th>
+                                                        <th>Spouse/partner</th>
+                                                        <th>Joint</th>
+                                                        <th>Total</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="bold">Bank/Building Society:</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.PersonalBankBuildingSocietyAssets</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.PartnerBankBuildingSocietyAssets</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.JointBankBuildingSocietyAssets</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.TotalBankBuildingSocietyAssets</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="bold">Investments:</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.PersonalInvestmentAssets</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.PartnerInvestmentAssets</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.JointInvestmentAssets</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.TotalInvestmentAssets</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="bold">Insurance Linked Policies:</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.PersonalInsuranceLinkedPolicies</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.PartnerInsuranceLinkedPolicies</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.JointInsuranceLinkedPolicies</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.TotalInsuranceLinkedPolicies</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="bold">Other Savings:</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.PersonalOtherSavings</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.PartnerOtherSavings</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.JointOtherSavings</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.TotalOtherSavings</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="bold">Main Residence:</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.PersonalMainResidence</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.PartnerMainResidence</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.JointMainResidence</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.TotalMainResidence</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="bold">Other Properties:</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.PersonalOtherProperties</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.PartnerOtherProperties</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.JointOtherProperties</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.TotalOtherProperties</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="bold">Significant Assets:</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.PersonalSignificantAssets</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.PartnerSignificantAssets</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.JointSignificantAssets</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.TotalSignificantAssets</td>
+                                                    </tr>
+                                                    <tr class="dotted-border-top">
+                                                        <td class="bold">Total:</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.TotalAssetsSelf</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.TotalAssetsPartner</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.TotalAssetsJoint</td>
+                                                        <td class="bold">@Model.IndividualDetails.ParticipantMainDetail.TotalAssetsCombined</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="info-with-comments">
+                                        <td>@i.IncrementSubSection()</td>
+                                        <td>
+                                            <h4 class="mb-0">Liabilities</h4>
+                                            <p class="small-details mb-2"><small>The client has confirmed the following approximate household liabilities.</small></p>
+                                        </td>
+                                        <td>
+                                            <table>
+                                                <colgroup>
+                                                    <col style="width: 50%">
+                                                    <col style="width: 50%">
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="mb-0 bold">Self:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.TotalLiabilitiesSelf</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="mb-0 bold">Partner/spouse:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.TotalLiabilitiesPartner</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="mb-0 bold">Joint:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.TotalLiabilitiesJoint</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="mb-0 bold">Total:</td>
+                                                        <td class="mb-0 bold">@Model.IndividualDetails.ParticipantMainDetail.TotalLiabilitiesCombined</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold" colspan="3">Household liabilities</td>
+                                    </tr>
+                                    <tr class="info">
+                                        <td colspan="3">
+                                            <table class="subtable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Type</th>
+                                                        <th>Self</th>
+                                                        <th>Spouse/partner</th>
+                                                        <th>Joint</th>
+                                                        <th>Total</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="bold">Mortgage:</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.PersonalLiabilitiesMortgage</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.PartnerLiabilitiesMortgage</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.JointLiabilitiesMortgage</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.TotalLiabilitiesMortgage</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="bold">Loans:</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.PersonalLiabilitiesLoans</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.PartnerLiabilitiesLoans</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.JointLiabilitiesLoans</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.TotalLiabilitiesLoans</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="bold">Overdraft:</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.PersonalLiabilitiesOverdraft</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.PartnerLiabilitiesOverdraft</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.JointLiabilitiesOverdraft</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.TotalLiabilitiesOverdraft</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="bold">Other:</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.PersonalLiabilitiesOther</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.PartnerLiabilitiesOther</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.JointLiabilitiesOther</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.TotalLiabilitiesOther</td>
+                                                    </tr>
+                                                    <tr class="dotted-border-top">
+                                                        <td class="bold">Total:</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.TotalLiabilitiesSelf</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.TotalLiabilitiesPartner</td>
+                                                        <td>@Model.IndividualDetails.ParticipantMainDetail.TotalLiabilitiesJoint</td>
+                                                        <td class="bold">@Model.IndividualDetails.ParticipantMainDetail.TotalLiabilitiesCombined</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="info">
+                                        @{
+                                            i = i.IncrementSubSection();
+                                        }
+                                        <td>@i</td>
+                                        <td>
+                                            <h4 class="mb-0">Retirement provision</h4>
+                                            <p class="small-details mb-2"><small>The client has confirmed the following provision.</small></p>
+                                        </td>
+                                        <td>
+                                            <table>
+                                                <colgroup>
+                                                    <col style="width: 50%">
+                                                    <col style="width: 50%">
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="mb-0 bold">Self:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.RetirementProvisionSelf</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="mb-0 bold">Spouse / partner:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.RetirementProvisionPartner</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                    </div>
+                </div>
+                <div style="page-break-before: always">&nbsp;</div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <section class="info-section">
+                            <table>
+                                <colgroup>
+                                    <col style="width: 7%">
+                                    <col style="width: 43%">
+                                    <col style="width: 50%">
+                                </colgroup>
+                                <tbody class="text-left">
+                                    <tr class="main-heading toc" id="TOC_Target5">
+                                        @{
+                                            sec += 1;
+                                            i = sec + 0.1;
+                                        }
+                                        <td>
+                                            <h1>@sec</h1>
+                                        </td>
+                                        <td colspan="2">
+                                            <h1>FINANCIAL DEPENDANTS</h1>
+                                        </td>
+                                    </tr>
+                                    <tr class="info">
+                                        <td>@i</td>
+                                        <td>
+                                            <h4 class="mb-0">Dependents</h4>
+                                            <p class="small-details mb-2"><small>The client has confirmed they have financial dependents.</small></p>
+                                        </td>
+                                        <td>
+                                            <table>
+                                                <colgroup>
+                                                    <col style="width: 50%">
+                                                    <col style="width: 50%">
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="mb-0 bold">Dependants:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.HasFinancialDependents</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    @if (Model.IndividualDetails.ParticipantMainDetail.HasFinancialDependents == "Yes") //any dependents then loop
+                                    {
+                                        foreach (var financialDependent in Model.IndividualDetails.SummaryFinancialDependents)
+                                        {
+                                            <tr class="info">
+                                                @{
+                                                    i = i.IncrementSubSection();
+                                                }
+                                                <td>@i</td>
+                                                <td>
+                                                    <h4 class="mb-0">@financialDependent.FirstName</h4>
+                                                    <p class="small-details mb-2"><small>The following details have been provided about the dependent:</small></p>
+                                                </td>
+                                                <td>
+                                                    <table>
+                                                        <colgroup>
+                                                            <col style="width: 50%">
+                                                            <col style="width: 50%">
+                                                        </colgroup>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="mb-0 bold">Relationship:</td>
+                                                                <td class="mb-0">@financialDependent.Relationship</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="mb-0 bold">Birth Month/Year:</td>
+                                                                <td class="mb-0">@financialDependent.BirthMonthYear</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </section>
+                    </div>
+                </div>
+                <div style="page-break-before: always">&nbsp;</div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <section class="info-section">
+                            <table>
+                                <colgroup>
+                                    <col style="width: 7%">
+                                    <col style="width: 43%">
+                                    <col style="width: 50%">
+                                </colgroup>
+                                <tbody class="text-left">
+                                    <tr class="main-heading toc" id="TOC_Target6">
+                                        @{
+                                            sec = sec + 1;
+                                            i = sec + 0.1;
+                                        }
+                                        <td>
+                                            <h1>@sec</h1>
+                                        </td>
+                                        <td colspan="2">
+                                            <h1>SOURCE OF FUNDS</h1>
+                                        </td>
+                                    </tr>
+                                    <tr class="info-with-comments">
+                                        <td>@i</td>
+                                        <td>
+                                            <h4 class="mb-0">Original source of investment/cash</h4>
+                                            <p class="small-details mb-2"><small>This client has confirmed the following original source of investment/cash.</small></p>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" class="comment-section pt-0">
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="commentBox">
+                                                            @Model.IndividualDetails.ParticipantMainDetail.SourceOfFundsSourceOfCash
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr class="info-with-comments">
+                                        @{
+                                            i = i.IncrementSubSection();
+                                        }
+                                        <td>@i</td>
+                                        <td>
+                                            <h4 class="mb-0">Transferred form</h4>
+                                            <p class="small-details mb-2"><small>This client has confirmed where the cash has been transferred from.</small></p>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" class="comment-section">
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="commentBox">
+                                                            @Model.IndividualDetails.ParticipantMainDetail.SourceOfFundsTransferredFrom
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="info">
+                                        @{
+                                            i = i.IncrementSubSection();
+                                        }
+                                        <td>@i</td>
+                                        <td>
+                                            <h4 class="mb-0">Means of transfer</h4>
+                                            <p class="small-details mb-2"><small>This client confirmed the following means of transfer.</small></p>
+                                        </td>
+                                        <td>
+                                            <table>
+                                                <colgroup>
+                                                    <col style="width: 50%">
+                                                    <col style="width: 50%">
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="mb-0 bold">Means of transfer:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.SourceOfFundsMeansOfTransfer</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                    </div>
+                </div>
+                <div style="page-break-before: always">&nbsp;</div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <section class="info-section">
+                            <table>
+                                <colgroup>
+                                    <col style="width: 7%">
+                                    <col style="width: 43%">
+                                    <col style="width: 50%">
+                                </colgroup>
+                                <tbody class="text-left">
+                                    <tr class="main-heading toc" id="TOC_Target7">
+                                        @{
+                                            sec += 1;
+                                            i = sec + 0.1;
+                                        }
+                                        <td>
+                                            <h1>@sec</h1>
+                                        </td>
+                                        <td colspan="2">
+                                            <h1>ACCOUNT INFORMATION</h1>
+                                        </td>
+                                    </tr>
+                                    <tr class="info">
+                                        <td>@i</td>
+                                        <td>
+                                            <h4 class="mb-0">Investment amount</h4>
+                                            <p class="small-details mb-2"><small>The client has confirmed the following investment amount:</small></p>
+                                        </td>
+                                        <td>
+                                            <table>
+                                                <colgroup>
+                                                    <col style="width: 50%">
+                                                    <col style="width: 50%">
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="mb-0 bold">Securities:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.InvestmentAmountSecurities</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="mb-0 bold">Cash:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.InvestmentAccountCash</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="mb-0 bold">To be transferred:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.InvestmentAmountToBeTransferred</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="info">
+                                        @{
+                                            i = i.IncrementSubSection();
+                                        }
+                                        <td>@i</td>
+                                        <td>
+                                            <h4 class="mb-0">Tax preferences</h4>
+                                            <p class="small-details mb-2"><small>The client has confirmed the following tax information:</small></p>
+                                        </td>
+                                        <td>
+                                            <table>
+                                                <colgroup>
+                                                    <col style="width: 50%">
+                                                    <col style="width: 50%">
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="mb-0 bold">Currency:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.TaxInformationPortfolioCurrency</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="mb-0 bold">Custody:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.TaxInformationCustody</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="mb-0 bold">Maintain CGT records:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.TaxInformationMainCGTRecords</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="mb-0 bold">Tax Year End:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.TaxInformationTaxationYearEnd</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="mb-0 bold">Quarterly period:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.TaxInformationQuarterlyYearEnd</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr class="info">
+                                        @{
+                                            i = i.IncrementSubSection();
+                                        }
+                                        <td>@i</td>
+                                        <td>
+                                            <h4 class="mb-0">ISA accounts</h4>
+                                            <p class="small-details mb-2"><small>The client provided the following ISA account information:</small></p>
+                                        </td>
+                                        <td>
+                                            <table>
+                                                <colgroup>
+                                                    <col style="width: 50%">
+                                                    <col style="width: 50%">
+                                                </colgroup>
+                                                <tbody>
+
+                                                    <tr>
+                                                        <td class="mb-0 bold">Did you hold ISAs:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.IsaAccountHoldIsa</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="mb-0 bold">Current year subscription:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.IsaAccountCurrentYearSubscription</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="mb-0 bold">To be transferred:</td>
+                                                        <td class="mb-0">@Model.IndividualDetails.ParticipantMainDetail.IsaAccountToBeTransferred</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+
+                                    @if (Model.IndividualDetails.ParticipantMainDetail.IsaAccountHoldIsa == "Yes") //isa yes
+                                    {
+                                        var count = 1;
+
+                                        foreach (var provider in @Model.IndividualDetails.SummaryIsaProviders)
+                                        {
+                                            <tr class="info">
+                                                @{
+                                                    i = i.IncrementSubSection();
+                                                }
+                                                <td>@i</td>
+                                                <td>
+                                                    <h4 class="mb-0">ISA provider @count</h4>
+                                                    <p class="small-details mb-2"><small>The client confirmed the following ISA provider details:</small></p>
+                                                </td>
+                                                <td>
+                                                    <table>
+                                                        <colgroup>
+                                                            <col style="width: 50%">
+                                                            <col style="width: 50%">
+                                                        </colgroup>
+                                                        <tbody>
+
+                                                            <tr>
+                                                                <td class="mb-0 bold">Provider:</td>
+                                                                <td class="mb-0">@provider.ProviderName</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="mb-0 bold">Address:</td>
+                                                                <td class="mb-0">@provider.Address</td>
+                                                            </tr>
+                                                        <tr>
+                                                                <td class="mb-0 bold">Account type:</td>
+                                                                <td class="mb-0">@provider.AccountType</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="mb-0 bold">Account reference:</td>
+                                                                <td class="mb-0">@provider.AccountReference</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="mb-0 bold">Approx. value:</td>
+                                                                <td class="mb-0">@provider.ApproxValue</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </section>
+                    </div>
+                </div>
+                <div style="page-break-before: always">&nbsp;</div>
+            }
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="info-section">
+                        <table>
+                            <colgroup>
+                                <col style="width: 7%">
+                                <col style="width: 43%">
+                                <col style="width: 50%">
+                            </colgroup>
+                            <tbody class="text-left">
+                                <tr class="main-heading toc" id="TOC_Target8">
+                                    @{
+                                        sec += 1;
+                                        i = sec + 0.0;
+                                    }
+                                    <td>
+                                        <h1>@sec</h1>
+                                    </td>
+                                    <td colspan="2" class="heading">
+                                        <h1>FURTHER INFORMATION</h1>
+                                    </td>
+                                </tr>
+                                @if (!Model.IndividualDetails.ParticipantMainDetail.IsMainApplicant)
+                                {
+                                    <tr class="info-with-comments">
+                                        @{
+                                            i = i.IncrementSubSection();
+                                        }
+                                        <td>@i</td>
+                                        <td>
+                                            <h4 class="mb-0">Agreement</h4>
+                                        </td>
+                                        <td>
+                                            <table>
+                                                <colgroup>
+                                                    <col style="width: 50%">
+                                                    <col style="width: 50%">
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="mb-0 bold" colspan="2">Time stamp:</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="mb-0" colspan="2">@DateTime.UtcNow.ToString("yyyy-MM-dd - hh-mm-ss")</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td></td>
+                                        <td colspan="2">
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="mb-0 bold">Agreement:</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            By ticking this box, you are accepting the information that has been provided in this application is accurate to the best of your knowledge and you will continue by completing your details required to set up this joint account in your name.
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                }
+                                <tr class="info-with-comments">
+                                    @{
+                                        i = i.IncrementSubSection();
+                                    }
+                                    <td>@i</td>
+                                    <td>
+                                        <h4 class="mb-0">Agreement</h4>
+                                    </td>
+                                    <td>
+                                        <table>
+                                            <colgroup>
+                                                <col style="width: 50%">
+                                                <col style="width: 50%">
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="mb-0 bold" colspan="2">Time stamp:</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="mb-0" colspan="2">@DateTime.UtcNow.ToString("yyyy-MM-dd - hh-mm-ss")</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td></td>
+                                    <td colspan="2">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="mb-0 bold">Agreement:</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        By ticking this box, you are accepting the information you have provided is accurate to your knowledge and you will now be directed to activate your application by completing the identity verification process. Once this has been completed, your Investment Manager/Mclnroy & Wood will be in touch to discuss further (or discuss Suitability etc.)
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                                <tr class="info-with-comments">
+                                    @{
+                                        i = i.IncrementSubSection();
+                                    }
+                                    <td>@i</td>
+                                    <td>
+                                        <h4 class="mb-0">Further information</h4>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+
+                                <tr class="info">
+                                    <td class="pt-0"></td>
+                                    <td class="pt-0" colspan="2">
+                                        <span style="white-space: pre-line; word-wrap: break-word;">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum ultricies enim et imperdiet. Cras nec malesuada nisl, non tempus ipsum. Proin ac ante sed est viverra vehicula ac id risus. Morbi dignissim metus nunc. Nullam condimentum aliquam aliquam. Vivamus ullamcorper ut dui et rutrum. Morbi ut nulla est. Cras iaculis eget elit eu tincidunt.
+
+                                            Maecenas sagittis est ut risus feugiat, vitae faucibus tortor consectetur. In hac habitasse platea dictumst. Etiam convallis tempus mi, eu ornare metus porttitor sed. Morbi luctus ex feugiat, semper dui non, efficitur erat. Maecenas imperdiet ipsum in sem molestie malesuada. Nam ac congue enim, eu malesuada odio. Ut cursus eu enim vel imperdiet. Phasellus ut bibendum urna, id molestie eros. Donec sit amet metus nulla.
+
+                                            Pellentesque fermentum ante a dignissim ullamcorper. Phasellus non semper nunc, sed faucibus diam. Cras eu ante urna. Donec non augue enim. Curabitur ornare iaculis lorem, vitae sollicitudin magna scelerisque ut. Mauris fermentum sem vitae ante faucibus ornare. Nunc et erat ultricies, semper enim a, molestie nibh. In venenatis risus nisi. Sed ac aliquam tellus. Mauris placerat enim sit amet magna dapibus, non laoreet tellus dictum. Integer lobortis tellus nibh, id iaculis ligula vestibulum et.
+
+                                            @if (Model.IndividualDetails.ParticipantMainDetail.IsMainApplicant)
+                                            {
+                                                <span> Aliquam erat volutpat. Sed egestas congue ipsum, vitae consectetur tellus vestibulum a. Proin sed dictum lectus. Quisque ut gravida neque. Mauris malesuada faucibus dui sit amet vestibulum. Maecenas mattis dolor ante, quis aliquam risus hendrerit ut. Vivamus aliquam lacinia iaculis. Vivamus vitae massa ut massa placerat facilisis sit amet a nisl. Vestibulum eget ornare tellus, et fermentum nibh. Suspendisse iaculis turpis libero, eu commodo nunc malesuada sed. Aliquam erat volutpat. Curabitur pellentesque nec mauris at luctus. Nam ac velit at urna interdum interdum. Vivamus vulputate metus justo, vel viverra elit finibus id. Fusce nec lectus risus. Curabitur sit amet erat mi.)</span>
+                                            }
+                                        </span>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

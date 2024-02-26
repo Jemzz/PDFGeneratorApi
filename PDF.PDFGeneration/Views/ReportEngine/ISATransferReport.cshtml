@@ -1,0 +1,158 @@
+﻿@model Tiller.WXL.Models.ViewModels.ISATransferViewModel
+
+@{
+    ViewBag.Title = "ISA Transfer PDF";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://fonts.cdnfonts.com/css/roboto" rel="stylesheet">
+    @*<link href="https://db.onlinewebfonts.com/c/62c0135163427c652ae397f327f85010?family=Museo+Sans" rel="stylesheet" type="text/css" />*@
+
+    <style>
+        @Html.Raw(Model.Css)
+    </style>
+</head>
+<body>
+    <div class="container main-container">
+        <div class="container-fluid">
+            <h1 class="text-center header-title">ISA Transfer in Application</h1>
+            <article>
+                <p>Application Start Date/Time: @Model.ISATransfer.ApplicationStartDate.ToString("dd/MM/yyyy '-' HH:mm '-' 'GMT'")</p>
+
+                <div class="section-one">
+                    <div class="sub-heading">
+                        <h4>Personal Information</h4>
+                    </div>
+                    <div class="row-section">
+                        <div class="col-content">
+                            <b>Title</b>
+                            <p>@Model.ISATransfer.Title</p>
+                            <b>First name(s)</b>
+                            <p>@Model.ISATransfer.FirstName</p>
+                            <b>Date of birth</b>
+                            <p>@Model.ISATransfer.DateOfBirth.ToString("dd/MM/yyyy")</p>
+                            <b>National Insurance No.</b>
+                            <p>@Model.ISATransfer.NationalInsuranceNumber</p>
+                        </div>
+                        <div class="col-content">
+                            <b>Surname</b>
+                            <p class="surname-col">@Model.ISATransfer.LastName</p>
+                            <b>Nationality</b>
+                            <p>@Model.ISATransfer.Nationality</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-two">
+                    <div class="sub-heading">
+                        <h4>Address & Contact Details</h4>
+                    </div>
+                    <div>
+                        <b>Address</b>
+                        <p>@Model.ISATransfer.Address</p>
+                    </div>
+                    <div class="row-section">
+                        <div class="col-content">
+                            <b>Post Code</b>
+                            <p>@Model.ISATransfer.PostZipCard</p>
+                            <b>Primary Contact Number</b>
+                            <p>@Model.ISATransfer.PhoneNumber</p>
+                        </div>
+                        <div class="col-content">
+                            <b>Country</b>
+                            <p>@Model.ISATransfer.CountryName</p>
+                            <b>Email address</b>
+                            <p>@Model.ISATransfer.EmailAddress</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-three">
+                    <div class="sub-heading">
+                        <h4>Existing ISA Plan Manager Name</h4>
+                    </div>
+                    <div>
+                        <b>ISA Plan Manager</b>
+                        <p>@Model.ISATransfer.ProviderRegisteredName</p>
+                        <b>ISA Plan Manager Address</b>
+                        <p>@Model.ISATransfer.ProviderAddress</p>
+                    </div>
+                    <div class="row-section">
+                        <div class="col-content">
+                            @*<b>Post Code</b>
+                                <p>AA1 2BB-</p>*@
+                            <b>Estimated Transfer Value</b>
+                            <p>£@Model.ISATransfer.TransferValue.ToString("N2")</p>
+                        </div>
+                        <div class="col-content">
+                            <b>ISA Reference</b>
+                            <p>@Model.ISATransfer.TransferReference</p>
+                            <b>ISA Type</b>
+                            <p>@Model.ISATransfer.IsaTypeName</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="page-break-after:always">&nbsp;</div>
+                <div class="section-four">
+                    <div class="sub-heading">
+                        <h4>Authorisation and Declaration</h4>
+                    </div>
+                    <div class="row-section">
+                        <div class="col-content-2">
+                            <p>@Model.ISATransfer.IsaTransferTypeName</p>
+                        </div>
+                        <div class="col-content-8">
+                            <p>I authorise Pershing Securities plc to transfer the full balance of my existing @Model.ISATransfer.IsaTypeName. All holdings are to be sold and transferred as cash with immediate effect. </p>
+                        </div>
+                        <div class="col-content-2">
+                            <p>@Model.ISATransfer.TransferDate.ToString("yyyy-MM-dd HH:mm:ss 'GMT'")</p>
+                        </div>
+                    </div>
+
+                    <div class="declaration">
+                        <div class="declaration-title"><h4>Declaration</h4></div>
+                        <div class="declaration-content">
+                            <p>I authorise Pershing Securities Limited, the ISA Manager, to transfer my ISA and I declare that:</p>
+                            <ul>
+                                <li>All subscriptions made and to be made, belong to me, and any future subscriptions will be drawn on an account belonging to me.</li>
+                                <li>I am 18 years of age or over.</li>
+                                <li>I have not subscribed and will not subscribe more than the overall subscription limit in total to any combination of permitted ISAs in the same tax year.</li>
+                                <li>I have not subscribed and will not subscribe to another Stocks & Shares ISA in the same year that I subscribe to this Stocks & Shares ISA.</li>
+                                <li>These transfer instructions also constitute an application to subscribe to a Pershing Stocks and Share ISA for the current tax year, and for each subsequent tax year, unless I notify you otherwise.</li>
+                                <li>I am resident and ordinarily resident in the UK for tax purposes, or if not so resident, either perform duties which, by virtue of Section 28 of the Income Tax (Earnings & Pensions) Act 2003 (Crown employees serving overseas), are treated as being performed in the United Kingdom, or I am married to or in a civil partnership with a person who performs such duties.  I will inform Pershing Securities Limited if I cease to be resident and ordinarily resident or to perform such duties or to be married to a person who performs such duties or in a civil partnership with a person who performs such duties.</li>
+                                <li>The information given within this form has been completed to the best of my knowledge.</li>
+                                <li>I have read and understood the Pershing ISA Terms and Conditions and agree that my account will be conducted in accordance with them.</li>
+                            </ul>
+                            <p>I acknowledge and agree that Pershing fees will be charged in accordance with the charges notified to me by my Financial Advisor.</p>
+                            <p>I authorise Pershing Securities Limited:</p>
+                            <ul>
+                                <li>To hold my cash subscriptions, ISA Investments, interest, dividends and any other rights or proceeds in respect of these investments and any other cash.</li>
+                                <li>To make on my behalf any claims to relief from tax in respect of ISA Investments.</li>
+                            </ul>
+                            <p>I understand that Pershing Securities Limited will notify me if by reason of failing to meet the provisions of the ISA rules my account is or will become void.</p>
+                            <p>I will inform Pershing Securities Limited of any change of circumstances affecting the information given in this form without delay</p>
+                        </div>
+                        <div class="row-section declaration-footer">
+                            <div class="col-content-10">Timestamp</div>
+                            <div class="col-content-2">@DateTime.UtcNow.ToString("yyyy.MM.dd HH:mm:ss 'GMT'")</div>
+                        </div>
+                        <div class="bottom-footer-section"></div>
+                    </div>
+                    <p>
+                        Under the provisions of UK Data Protection law you are entitled to know how we process your personal data and your rights to the management of this information.
+                        Details of those rights and how you can exercise them can be found within the Mattioli Woods Privacy Notice,
+                        which is available at: <a href="www.mattioliwoods.com/privacy-notice">www.mattioliwoods.com/privacy-notice</a>
+                    </p>
+                </div>
+            </article>
+        </div>
+    </div>
+</body>
+</html>

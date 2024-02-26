@@ -1,0 +1,78 @@
+﻿
+@font-face {
+    font-family: "Museo Sans";
+    src: local("Museo Sans"), 
+        url('https://usuwswxlonboardappmw.azurewebsites.net/assets/fonts/museo-sans/MuseoSans-100.otf') format("opentype"), 
+        url('https://usuwswxlonboardappmw.azurewebsites.net/assets/fonts/museo-sans/MuseoSans-300.otf') format("opentype"), 
+        url('https://usuwswxlonboardappmw.azurewebsites.net/assets/fonts/museo-sans/MuseoSans_500.otf') format("opentype")
+}
+
+
+body {
+    font-family: 'Museo Sans', Calibri;
+    width: 100%
+}
+
+.section-one hr {
+    margin-top: 6px !important;
+}
+
+    .section-one .first-page-heading {
+        color: #4A4F55;
+    }
+
+    .section-one .first-page-right-content {
+        border: 1px solid #4A4F55;
+    }
+
+    .section-one .first-page-right-content {
+        margin-top: 7px !important;
+        margin-bottom: 30px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .section-one .first-page-right-content-footer {
+        float: right;
+    }
+
+    .section-one .right-content-subheading {
+        border-bottom: 1px solid #4A4F55;
+        font-weight:600;
+        margin-bottom:14px;
+    }
+
+.section-one table {
+    border: 0;
+    margin-bottom: 0;
+    font-size: 18px;
+}
+
+
+
+table {
+    border: 1px solid #f06617;
+    margin-bottom: 10px !important;
+}
+.summary-table {
+    border: 0px !important;
+    margin-bottom: 10px !important;
+}
+    table thead {
+        background-color: #4A4F55;
+    }
+
+    table th, table td {
+        border: 0 !important;
+        padding: 4px !important;
+        font-weight: normal;
+    }
+
+hr:not(.footnote-dash) {
+    border-color: #4A4F55;
+    border-width: 2px;
+}
+
+th {
+    color: white;
+}

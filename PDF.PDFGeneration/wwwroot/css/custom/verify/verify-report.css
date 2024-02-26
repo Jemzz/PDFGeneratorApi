@@ -1,0 +1,345 @@
+﻿@font-face {
+    font-family: 'Inter';
+    src: url('../../font/Inter-Regular.ttf');
+}
+
+body {
+    padding-bottom: 20px;
+    font-family: 'Inter', sans-serif; 
+    color: #2d374b;
+} 
+
+h1 {
+    font-size: 2.8em;
+}
+
+.row {
+    margin: 0;
+}
+
+table tbody td {
+    vertical-align: top;
+}
+
+table {
+    width: 100%;
+}
+
+.col-lg-6 {
+    width: 50%;
+    float: left;
+}
+
+.header-icon {
+    width: 80px;
+    height: 70px;
+}
+
+.sub-heading-icon {
+    width: 40px;
+    height: 35px;
+}
+
+i {
+    font-size: 20px;
+    color: white;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+/* Content page */
+.content-section a {
+    color: #2d374b;
+}
+
+.contents-page-style {
+    display: inline-block;
+}
+
+.sub-content{
+    padding-left: 40px;
+}
+
+.table-of-content{
+    width: 70%;
+}
+
+.table-of-content tbody > tr > :nth-child(1) {
+    width: 10%;
+}
+
+.table-of-content tbody > tr > :nth-child(2) {
+    width: 10%;
+}
+
+.checks-result {
+    border: 1px solid #f2f4f7;
+    border-radius: 10px;
+    background-color: #f2f4f7;
+}
+
+    .checks-result p, .checks-result span{
+        font-size:12px;
+    }
+
+    /* Customer info */
+    .customer-info-section table tbody .customer-info {
+        border-bottom: 2px solid #d5d7db;
+    }
+
+.customer-info-section table tbody .customer-info {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.customer-info-header {
+    margin-bottom: 20px;
+}
+
+.small-details-customer {
+    width: 300px;
+}
+
+.image-small {
+    border-radius: 30px;
+    width: 120px;
+    margin-bottom: 14px;
+    margin-top: 20px;
+    max-height: 200px;
+}
+
+.fa-address-card {
+    color: blue;
+    font-size: 24px;
+}
+
+/*liveness section - pep & sanctions */
+.liveness-section {
+    border-bottom: solid 2px #d5d7db;
+    padding-bottom: 12px;
+}
+
+
+    .liveness-section table tbody td, .adverse-media-details-section table tbody td, .sanction-media-details-section table tbody td {
+        word-break: break-word;
+    }
+
+    .liveness-section .liveness-first-section, .sanction-section .sanction-first-section, .address-section .address-first-section, .proof-address-info, .adverse-media-section, .adverse-media-details-section, .sanction-media-details-section, .bank-section .bank-first-section {
+        background-color: #f3f3f3;
+        border-radius: 16px;
+    }
+
+    .liveness-section tr:first-child td, .sanction-section tr:first-child td, .address-section tr:first-child td, .bank-section tr:first-child td {
+        padding-top: 20px;
+    }
+
+    .liveness-section tr:last-child td {
+        padding-right: 20px;
+    }
+
+    .liveness-section tr td, .address-first-section tr td, .bank-first-section tr td {
+        padding-left: 20px;
+    }
+
+    .liveness-section .liveness-first-section tr:last-child td, .address-section .address-first-section tr:last-child td{
+        padding-bottom: 20px;
+    }
+
+    .liveness-section .liveness-first-section tr td, .address-section .address-first-section tr td, .bank-section .bank-first-section tr td {
+        padding-right: 10px;
+    }
+
+.liveness-image-large img {
+    border-radius: 15px;
+    width: 380px;
+    /*margin-left: 210px;*/
+}
+
+.flex-parent-container {
+    width: 100%;
+}
+
+    .flex-parent-container .container-left {
+        float: left;
+        padding-top: 1.5rem
+    }
+
+    .flex-parent-container .container-right {
+        margin-left: 50%
+    }
+
+        .flex-parent-container .container-right tr:first-child td:first-child {
+            padding-left: 1px;
+        }
+
+
+/* Verify doc*/
+.verify-section-status {
+    display: flex;
+}
+
+.result {
+    background-color: #f3f3f3;
+    font-size: 12px;
+}
+
+.verify-detail-info tr:first-child td {
+    padding-top: 12px;
+}
+
+/*liveness sub*/
+.liveness-sub-section {
+    border-top: solid 2px #d5d7db;
+    border-bottom: solid 2px #d5d7db;
+}
+
+    .liveness-sub-section tr:first-child td {
+        padding-top: 24px;
+    }
+
+    .liveness-sub-section tr:last-child td {
+        padding-bottom: 20px;
+    }
+
+#liveness-images-div .column {
+    float: left;
+    width: 25%;
+    padding: 5px;
+    padding-bottom: 1.5rem;
+}
+
+/*facematch section*/
+
+.facematch-section {
+    border-top: solid 2px #d5d7db;
+}
+
+    .facematch-section tr:first-child td {
+        padding-top: 24px;
+    }
+
+    .facematch-section tr:last-child td {
+        padding-bottom: 20px;
+    }
+
+/*.face-verify-image-medium {
+    margin-left: 430px;
+}*/
+
+.face-verify-image-medium img {
+    width: 190px;
+    border-radius: 17px;
+    max-height: 336px;
+}
+
+.facematch-border-bottom {
+    border-top: solid 2px #d5d7db;
+    margin-top: 24px;
+}
+
+#face-match-img-div .column {
+    float: left;
+    width: 50%;
+    padding: 5px;
+    padding-bottom: 1.5rem;
+}
+
+/*pep & sanctions*/
+
+.sanction-second-sub-section tr td {
+    padding-top: 0px !important;
+}
+
+.sanction-second-sub-section .sanction-second-sub-section-value {
+    padding-left: 20px;
+}
+
+
+/*address section*/
+.adress-detail-info, .sanction-first-sub-section {
+    border-bottom: 2px solid #d5d7db;
+}
+
+.address-second-sub-section tr td, .bank-sub-section tr td {
+    padding-top: 0px !important;
+}
+
+.address-second-sub-section tbody > tr:last-child > td:last-child, .sanction-second-sub-section tbody > tr:last-child > td:last-child, .bank-sub-section tbody > tr:last-child > td:last-child {
+    padding-bottom: 24px;
+}
+
+.proof-image {
+    text-align: center;
+}
+
+    .proof-image img {
+        border-radius: 15px;
+        max-width: 640px;
+        max-height: 850px;
+        /*   height: 850px;*/
+    }
+/*.address-second-sub-section .address-second-sub-value {
+    padding-left: 100px;
+}*/
+/*-----------------------------------------------*/
+/*.image-detail-info td {
+    padding-left: 10px;
+}
+
+.image-small-non-border img {
+    width: 150px;
+}*/
+.mb-4 {
+    margin-bottom: 10px;
+}
+
+.pep-sanction-info td {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.main-logo img {
+    width: 200px;
+}
+
+.first-page-title {
+    text-align: center;
+}
+
+    .first-page-title h1 {
+        font-size: 4.5em;
+    }
+
+.contact-section {
+    border: 1px solid #000;
+}
+
+    .contact-section .contact-heading {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .contact-section .contact-sub-heading {
+        font-weight: bold;
+        color: gray;
+    }
+
+.sub-heading, .main-heading {
+    margin-bottom: 10px;
+}
+
+
+.green-colour {
+    color: #40DA9E;
+}
+
+.orange-colour {
+    color: #f48d52;
+}
+
+.red-colour {
+    color: #f75e6e;
+}
+
