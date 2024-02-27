@@ -75,17 +75,7 @@ namespace PDF.PDFGeneration
             services.TryAddSingleton<IClientReportService, ClientReportService>();
             services.TryAddSingleton<IClientReportRepository, ClientReportRepository>();
             services.TryAddSingleton<IRenderView, RenderView>();
-            services.TryAddSingleton<ValuationReport>();
-            services.TryAddSingleton<SuitabilityReport>();
-            services.TryAddSingleton<ISATransferReport>();
-            services.TryAddSingleton<JISATransferReport>();
-            services.TryAddSingleton<JISATransferCTFReport>();
-            services.TryAddSingleton<SuitabilitySubTypeReport>();
             services.TryAddSingleton<VerifyReport>();
-            services.TryAddSingleton<CostDisclosureReport>();
-            services.TryAddSingleton<LocalTestReport>();
-            services.TryAddSingleton<ClientReport>();
-            services.TryAddSingleton<EidAndVReport>();
 
             services.Configure<RepositoryOptions>(option =>
             {
@@ -108,28 +98,8 @@ namespace PDF.PDFGeneration
                 {
                     case ReportServiceTypes.SuitabilityReport:
                         return serviceProvider.GetService<SuitabilityReport>();
-                    case ReportServiceTypes.ValuationReport:
-                    case ReportServiceTypes.QuarterlyValuationReport:
-                        return serviceProvider.GetService<ValuationReport>();
-                    case ReportServiceTypes.ISATransferReport:
-                        return serviceProvider.GetService<ISATransferReport>();
-                    case ReportServiceTypes.JISATransferReport:
-                        return serviceProvider.GetService<JISATransferReport>();
-                    case ReportServiceTypes.JISATransferCTFReport:
-                        return serviceProvider.GetService<JISATransferCTFReport>();
-                    case ReportServiceTypes.SuitabilitySubTypeReport:
-                        return serviceProvider.GetService<SuitabilitySubTypeReport>();
                     case ReportServiceTypes.VerifyReport:
                         return serviceProvider.GetService<VerifyReport>();
-                    case ReportServiceTypes.CostDisclosureReport:
-                        return serviceProvider.GetService<CostDisclosureReport>();
-                    case ReportServiceTypes.LocalTestReport:
-                        return serviceProvider.GetService<LocalTestReport>();
-                    case ReportServiceTypes.ClientReportParticipant1:
-                    case ReportServiceTypes.ClientReportParticipant2:
-                        return serviceProvider.GetService<ClientReport>();
-                    case ReportServiceTypes.EidAndVReport:
-                        return serviceProvider.GetService<EidAndVReport>();
                     default:
                         return null;
                 }

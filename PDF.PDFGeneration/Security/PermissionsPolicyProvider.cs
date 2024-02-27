@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Options;
+using PDF.Core.Options;
+using PDF.PDFGeneration.Security.Requirements;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.Options;
-using PDF.Core.Security.ApiKeyAuthentication.Authentication;
-using PDF.PDFGeneration.Security.Requirements;
 
 namespace PDF.PDFGeneration.Security
 {
@@ -39,7 +39,7 @@ namespace PDF.PDFGeneration.Security
                 return FallbackPolicyProvider.GetPolicyAsync(policyName);
             }
 
-            var schemes = new[] { ApiKeyAuthenticationOptions.DefaultScheme };
+            var schemes = new[] { APIKeyAuthenticationOptions.DefaultScheme };
 
             var policy = new AuthorizationPolicyBuilder(schemes);
             var identifier = Guid.NewGuid();

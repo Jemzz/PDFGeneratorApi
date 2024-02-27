@@ -1,8 +1,8 @@
-﻿using System;
+﻿using PDF.Core.Utilities;
+using PDF.PDFGeneration.Security;
+using System;
 using System.Linq;
 using System.Security.Claims;
-using PDF.Core.Utilities.Extensibility;
-using PDF.PDFGeneration.Security;
 
 namespace PDF.Onboard.Api.Core.Security
 {

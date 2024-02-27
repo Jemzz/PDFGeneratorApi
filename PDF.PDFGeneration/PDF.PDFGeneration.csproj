@@ -18,15 +18,10 @@
 
   <ItemGroup>
     <Content Remove="Views\ReportEngine\CostDisclosureReport.cshtml" />
-    <Content Remove="Views\ReportEngine\FirstPage\ClientReportFirstPage.cshtml" />
-    <Content Remove="Views\ReportEngine\FirstPage\CostDisclosureFirstPage.cshtml" />
-    <Content Remove="Views\ReportEngine\FirstPage\EidVFirstPage.cshtml" />
-    <Content Remove="Views\ReportEngine\FirstPage\ValuationFirstPage.cshtml" />
     <Content Remove="Views\ReportEngine\ISATransferReport.cshtml" />
     <Content Remove="Views\ReportEngine\JISATransferCTFReport.cshtml" />
     <Content Remove="Views\ReportEngine\JISATransferReport.cshtml" />
     <Content Remove="Views\ReportEngine\ParticipantClientReport.cshtml" />
-    <Content Remove="Views\ReportEngine\SuitabilityReport.cshtml" />
     <Content Remove="Views\ReportEngine\SuitabilitySubTypeReport.cshtml" />
     <Content Remove="Views\ReportEngine\ValuationReport.cshtml" />
     <Content Remove="wwwroot\css\custom\cost-disclosure\cost-disclosure-firstpage.css" />
